@@ -1,0 +1,6 @@
+#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"
+#include "Generated.xcconfig"
+ 
+bundle_suffix=.prod
+app_display_name=Flutter_boiler
+FLUTTER_TARGET=lib/main_prod.dart

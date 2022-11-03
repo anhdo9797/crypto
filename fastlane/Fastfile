@@ -1,0 +1,105 @@
+before_all do |lane , options|
+    # env is prod or dev
+    puts "Run all lane with type #{options[:env]}"
+   
+end
+
+platform :android do        
+    desc 'Build the Android application.'
+    lane :build do | options |
+        gradle(
+            task: "clean", 
+            project_dir: 'android/',
+            properties: {
+                "defaultEnvFile" => ENV["ENVFILE"]
+            }
+        )
+       
+        gradle(
+            task: "assemble",
+            build_type: "Release",
+            flavor: ENV["FLAVOR"],
+            print_command: true,
+            project_dir: 'android/',
+            flags: ENV["FLAGS"],
+            properties: {
+                "defaultEnvFile" => ENV["ENVFILE"]
+            }
+        )
+    end
+
+    desc 'Build and upload to Diawi'
+    lane :deploy do | options |
+        versionCode = increment_version_code(gradle_file_path: "android/app/build.gradle")
+        outputPath = "build/app/outputs/apk/#{ENV['FLAVOR']}/release/#{ENV['APP_NAME']}-release.apk"
+        
+        build()
+         
+        push(versionCode: versionCode)
+        
+        diawi(
+            token: ENV["DIAWI_TOKEN"],
+            file: outputPath,
+            callback_emails: ENV["EMAIL_CALLBACK"]
+        )
+        
+        UI.success("Build success version: #{versionCode}")
+        UI.success("Output path: #{outputPath}")
+    end
+
+    desc 'Push new versions'
+    lane :push do | options |
+        git_commit(path: "*", message: "Version Bump #{options[:versionCode]}")
+        push_to_git_remote
+    end
+
+    #using for CI
+    desc 'Build and upload apk prod to Diawi'
+    lane :deploy_prod do | options |
+        versionCode = increment_version_code(gradle_file_path: "android/app/build.gradle")
+   
+        gradle(
+            task: "assemble",
+            build_type: "Release",
+            flavor: "prod",
+            print_command: true,
+            project_dir: 'android/',
+            flags: "-Ptarget=lib/main_prod.dart",
+        )    
+      
+        diawi(
+            token: ENV["DIAWI_TOKEN"], 
+            callback_emails: ENV["EMAIL_CALLBACK"]
+        )
+        push(versionCode: versionCode)
+        
+        
+    end
+end
+
+platform :ios do        
+    desc 'Deploy app'
+    lane :deploy do | options | 
+        increment_build_number(xcodeproj: './ios/Runner.xcodeproj')
+        build_app(
+            configuration: "Release",
+            scheme: ENV["FLAVOR"],
+            workspace: "ios/Runner.xcworkspace",
+            export_method: "ad-hoc",
+            output_directory: "ios/",  
+            output_name: "#{ENV['APP_NAME']}.ipa",   
+        ) 
+
+        outputPath = "ios/#{ENV['APP_NAME']}.ipa"
+        diawi(
+            token: ENV["DIAWI_TOKEN"],
+            file: outputPath,
+            callback_emails: ENV["EMAIL_CALLBACK"]
+        )       
+    end
+end
+
+after_all do |lane, options|
+   
+end
+  

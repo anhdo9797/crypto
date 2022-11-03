@@ -1,0 +1,60 @@
+name: flutter_boiler
+description: A new Flutter project.
+
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.17.1 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  intl: ^0.17.0
+  cupertino_icons: ^1.0.2
+  rxdart: ^0.27.5
+
+  # manager state
+  provider: ^6.0.3
+
+  #navigation
+  go_router: ^5.0.5
+
+  # config
+  flutter_launcher_icons: "^0.10.0"
+  flutter_native_splash: ^2.2.11
+  google_fonts: ^3.0.1
+  get_it: ^7.2.0 # for injection
+  flutter_dotenv: ^5.0.2
+
+  # data
+  shared_preferences: ^2.0.15
+  dio: ^4.0.6
+
+  # UI
+  skeletons: ^0.0.3
+  cached_network_image: ^3.2.2
+  flutter_svg: ^1.1.5
+  smooth_page_indicator: ^1.0.0+2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+  generate: true
+  uses-material-design: true
+
+  assets:
+    - assets/images/png/
+    - assets/images/svg/
+    - assets/lang/
+    - assets/launcher_icon/
+    - .env.dev
+    - .env.prod
