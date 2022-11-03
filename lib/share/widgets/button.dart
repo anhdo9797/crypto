@@ -13,6 +13,7 @@ class ButtonWidget extends StatelessWidget {
     this.icon,
     this.colors,
     this.labelStyle = const TextStyle(color: AppColors.lightText),
+    this.backgroundColor,
   }) : super(key: key);
 
   final ButtonType type;
@@ -21,6 +22,7 @@ class ButtonWidget extends StatelessWidget {
   final Widget? child;
   final Widget? icon;
   final List<Color>? colors;
+  final Color? backgroundColor;
   final TextStyle labelStyle;
 
   @override
@@ -70,24 +72,17 @@ class ButtonWidget extends StatelessWidget {
           child: _child,
         );
       default:
-        return LinearContainer(
-          type: LinearType.primary,
-          colors: colors ??
-              (type == ButtonType.secondary
-                  ? [AppColors.secondary, AppColors.secondary.withOpacity(0.4)]
-                  : null),
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              minimumSize: const Size.fromHeight(AppDimension.componentHeight),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(AppDimension.borderRadius),
-              ),
-              backgroundColor: Colors.transparent,
-              shadowColor: Colors.transparent,
+        return ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            minimumSize: const Size.fromHeight(AppDimension.componentHeight),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppDimension.borderRadius),
             ),
-            onPressed: onPressed,
-            child: _child,
+            backgroundColor: backgroundColor ?? AppColors.primary,
+            // shadowColor: Colors.transparent,
           ),
+          onPressed: onPressed,
+          child: _child,
         );
     }
   }

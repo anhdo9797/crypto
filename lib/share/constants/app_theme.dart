@@ -8,7 +8,7 @@ class AppThemeData {
   static const _darkFillColor = Colors.white;
 
   static final Color _lightFocusColor = Colors.black.withOpacity(0.12);
-  static final Color _darkFocusColor = Colors.white.withOpacity(0.12);
+  static final Color _darkFocusColor = Colors.white.withOpacity(0.2);
 
   static ThemeData lightThemeData =
       themeData(lightColorScheme, _lightFocusColor);
@@ -20,14 +20,14 @@ class AppThemeData {
       textTheme: _textTheme,
       primaryColor: const Color(0xFF030303),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: colorScheme.onBackground,
+        backgroundColor: colorScheme.background,
         selectedItemColor: colorScheme.primary,
         showUnselectedLabels: false,
         elevation: 1,
       ),
       appBarTheme: AppBarTheme(
-        backgroundColor: colorScheme.onBackground,
-        elevation: 1,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         systemOverlayStyle: colorScheme.brightness == Brightness.dark
             ? SystemUiOverlayStyle.light
             : SystemUiOverlayStyle.dark,
@@ -65,20 +65,21 @@ class AppThemeData {
     onSurface: Color(0xFF241E30),
   );
 
-  static const ColorScheme darkColorScheme = ColorScheme(
+  static ColorScheme darkColorScheme = ColorScheme(
     primary: AppColors.primary,
     primaryContainer: AppColors.primaryContainer,
     secondary: AppColors.secondary,
     secondaryContainer: AppColors.secondary,
     background: AppColors.background,
-    surface: AppColors.surface,
     onBackground: AppColors.onBackground,
+    surface: AppColors.surface,
+    onSurface: _darkFillColor,
     error: AppColors.error,
     onError: _darkFillColor,
     onPrimary: _darkFillColor,
     onSecondary: _darkFillColor,
-    onSurface: _darkFillColor,
     brightness: Brightness.dark,
+    inverseSurface: Colors.white.withOpacity(0.2),
   );
 
   static const _regular = FontWeight.w400;

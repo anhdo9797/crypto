@@ -8,4 +8,8 @@ class ApiConstant {
   static const login = "api/login";
   static const register = "api/register";
   static const String users = 'api/users';
+  static const coinMarket = 'coins/markets';
+
+// static const register = "api/register";
+
 }

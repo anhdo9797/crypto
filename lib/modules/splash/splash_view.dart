@@ -34,9 +34,7 @@ class _SplashViewState extends State<SplashView> {
     size.init(context);
 
     final AuthProvider authProvider = Provider.of<AuthProvider>(context);
-    final GoRouter goRouter = GoRouter.of(context);
-
-    appInit(authProvider, goRouter);
+    appInit(authProvider);
 
     return Scaffold(
       body: Center(
@@ -54,22 +52,14 @@ class _SplashViewState extends State<SplashView> {
     );
   }
 
-  appInit(AuthProvider authProvider, GoRouter goRouter) async {
+  appInit(AuthProvider authProvider) async {
     await Future.delayed(const Duration(seconds: 1));
-    goRouter.goNamed(APP_PAGE.onboard.toName);
 
-    // if (AppPref.firstInstall) {
-    //   goRouter.goNamed(APP_PAGE.onboard.toName);
-    // } else {
-    //   final value = await authProvider.getMe();
-
-    //   if (value == AuthStatus.loggedIn) {
-
-    //   } else {
-    //     goRouter.goNamed(APP_PAGE.auth.toName);
-    //   }
-    // }
-
+    if (AppPref.firstInstall) {
+      AppRouter.routes.goNamed(APP_PAGE.onboard.toName);
+    } else {
+      AppRouter.routes.goNamed(APP_PAGE.home.toName);
+    }
     FlutterNativeSplash.remove(); // remove native splash
   }
 

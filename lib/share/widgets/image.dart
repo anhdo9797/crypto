@@ -9,18 +9,18 @@ class ImageWidget extends StatelessWidget {
   const ImageWidget(
     this.url, {
     Key? key,
-    this.width = 80,
-    this.height = 80,
     this.fit = BoxFit.cover,
     this.color,
     this.cacheKey,
     this.semanticsLabel,
     this.radius,
     this.shape = BoxShape.rectangle,
+    this.width,
+    this.height,
   }) : super(key: key);
 
-  final double width;
-  final double height;
+  final double? width;
+  final double? height;
   final BoxFit fit;
   final String url;
   final Color? color;
@@ -57,9 +57,9 @@ class ImageWidget extends StatelessWidget {
         imageBuilder: (context, imageProvider) => shape == BoxShape.circle
             ? CircleAvatar(
                 backgroundColor: color,
-                radius: (width / 2) + 2,
+                radius: (width ?? 80 / 2) + 2,
                 child: CircleAvatar(
-                  radius: (width / 2),
+                  radius: (width ?? 80 / 2),
                   backgroundImage: imageProvider,
                 ),
               )

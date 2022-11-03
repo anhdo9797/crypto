@@ -16,4 +16,6 @@ class Assets {
   static String logo = dotenv.env['EVN'] == 'DEVELOPMENT'
       ? "assets/launcher_icon/logo_dev.png"
       : "assets/launcher_icon/logo.png";
+
+  static const walletContainer = 'assets/images/svg/wallet_container.svg';
 }

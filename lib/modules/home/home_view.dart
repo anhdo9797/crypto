@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler/modules/home/tabs/dasboard/dashboard_view.dart';
+import 'package:flutter_boiler/modules/home/tabs/dashboard/dashboard_view.dart';
 import 'package:flutter_boiler/modules/home/tabs/friends/friends_view.dart';
 import 'package:flutter_boiler/modules/home/tabs/setting/setting.dart';
 
