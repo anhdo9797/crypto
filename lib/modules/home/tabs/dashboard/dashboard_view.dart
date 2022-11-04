@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boiler/data/models/coin_market_model.dart';
+import 'package:flutter_boiler/data/models/market_filter_model.dart';
 import 'package:flutter_boiler/data/models/user.dart';
 import 'package:flutter_boiler/modules/base/base.dart';
 import 'package:flutter_boiler/modules/home/tabs/dashboard/dashboard_view_model.dart';
@@ -47,14 +48,10 @@ class DashboardView extends StatelessWidget {
         ],
       ),
       body: SafeArea(
-        child: Container(
-          padding: const EdgeInsets.all(AppDimension.padding),
-          width: SizeConfig().screenWidth,
-          height: SizeConfig().screenHeight,
-          child: viewModel.isInitialized
-              ? SkeletonListView()
-              : _buildBody(context, viewModel),
-        ),
+        minimum: const EdgeInsets.symmetric(horizontal: AppDimension.padding),
+        child: viewModel.isInitialized
+            ? SkeletonListView()
+            : _buildBody(context, viewModel),
       ),
     );
   }
@@ -75,19 +72,41 @@ class DashboardView extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 16),
             child: Text("Recommended"),
           ),
-          if (viewModel.coins.isNotEmpty)
-            SizedBox(
-              height: SizeConfig().screenHeight * 0.13,
-              child: CoinsRecommended(
-                coins: viewModel.coins,
-              ),
+          SizedBox(
+            height: SizeConfig().screenHeight * 0.13,
+            child: CoinsRecommended(
+              coins: viewModel.coinsTrending,
             ),
-          const Space(),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 16),
-            child: Text("For you"),
           ),
-          if (viewModel.coins.isNotEmpty) CoinsMarket(coins: viewModel.coins)
+          const Space(),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("For you"),
+                DropDownWidget<MarketFilterModel>(
+                  onChanged: viewModel.onFilter,
+                  value: viewModel.filterMarket.firstWhere(
+                      (element) => element.key == viewModel.filterValue),
+                  items: viewModel.filterMarket
+                      .map<DropdownMenuItem<MarketFilterModel>>(
+                          (MarketFilterModel value) {
+                    return DropdownMenuItem<MarketFilterModel>(
+                      value: value,
+                      child: Text(value.value ?? ""),
+                    );
+                  }).toList(),
+                ),
+              ],
+            ),
+          ),
+          if (viewModel.isLoadingMarket)
+            SizedBox(
+              height: 300,
+              child: SkeletonListView(),
+            ),
+          CoinsMarket(coins: viewModel.coins)
         ],
       ),
     );
@@ -108,28 +127,18 @@ class DashboardView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const Text("My wallet"),
-            Container(
-              padding: const EdgeInsets.all(AppDimension.padding / 4),
-              decoration: BoxDecoration(
-                color: colorScheme.inverseSurface,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: DropdownButtonHideUnderline(
-                  child: DropdownButton<String>(
-                value: viewModel.dropDown[0],
-                isDense: true,
-                icon: const Icon(Icons.arrow_drop_down_rounded),
-                onChanged: (String? value) {
-                  // This is called when the user selects an item.
-                },
-                items: viewModel.dropDown
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-              )),
+            DropDownWidget(
+              onChanged: (String? value) {
+                // This is called when the user selects an item.
+              },
+              value: viewModel.dropDown[0],
+              items: viewModel.dropDown
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
             )
           ],
         ),

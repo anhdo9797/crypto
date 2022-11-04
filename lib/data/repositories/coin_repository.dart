@@ -10,9 +10,23 @@ class CoinRepository {
   CoinRepository(this.coinsApi);
 
   /// return token
-  Future<List<CoinMarket>> getCoinMarket() async {
+  Future<List<CoinMarket>> getCoinMarket({
+    currency = "usd",
+    order = "market_cap_desc",
+    perPage = 10,
+    page = 1,
+    sparkline = false,
+  }) async {
     try {
-      final response = await coinsApi.getCoinMarket();
+      final queryParameters = {
+        "vs_currency": currency,
+        "order": order,
+        "per_page": "$perPage",
+        "page": "$page",
+        "sparkline": "$sparkline"
+      };
+
+      final response = await coinsApi.getCoinMarket(queryParameters);
       List data = response.data;
 
       return data.map((e) => CoinMarket.fromJson(e)).toList();

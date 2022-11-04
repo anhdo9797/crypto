@@ -17,6 +17,7 @@ class ChartImg extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return SizedBox();
     return SizedBox(
       width: width,
       height: height,

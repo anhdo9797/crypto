@@ -18,15 +18,23 @@ final userMock = UserModel(
 );
 
 class DashboardViewModel extends BaseViewModel {
-  @override
-  bool isInitialized = true;
-  List<UserModel> users = [];
-
-  List<String> dropDown = ["USD", "Euro"];
-
   final CoinRepository coinRepository = getIt.get<CoinRepository>();
 
+  @override
+  bool isInitialized = true;
+  bool isLoadingMarket = false;
+
+  List<String> dropDown = ["USD", "Euro"];
+  List<MarketFilterModel> filterMarket = [
+    MarketFilterModel(key: "desc", value: "Price desc"),
+    MarketFilterModel(key: "asc", value: "Price"),
+    MarketFilterModel(key: "trend", value: "Trend"),
+  ];
+
   List<CoinMarket> coins = [];
+  List<CoinMarket> coinsTrending = [];
+
+  String filterValue = "desc";
 
   @override
   FutureOr<void> init() async {
@@ -34,17 +42,39 @@ class DashboardViewModel extends BaseViewModel {
       WebView.platform = SurfaceAndroidWebView();
     }
 
-    await getCoins();
     //TODO: mock
     UserManager.changeUser(userMock);
+    onRefreshCoin();
+    getTrendingCoin();
 
     isInitialized = false;
     notifyListeners();
   }
 
-  Future getCoins() async {
+  Future getTrendingCoin() async {
+    await Future.delayed(const Duration(seconds: 1));
+    try {
+      String response =
+          await rootBundle.loadString('assets/mock/mock_market_coin.json');
+
+      List<dynamic> result = json.decode(response);
+
+      coinsTrending =
+          result.reversed.map((n) => CoinMarket.fromJson(n)).toList();
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  /// Market handler
+  int page = 1;
+  Future getCoinsMarket() async {
     // try {
-    //   coins = await coinRepository.getCoinMarket();
+    // final res = await coinRepository.getCoinMarket(page: 1, order: filterValue);
+    // if (res.isNotEmpty) {
+    //   coins = [...coins, ...res];
+    //   page++;
+    // }
     // } catch (e) {
     //   log("Get coins Error: $e");
     // }
@@ -57,6 +87,27 @@ class DashboardViewModel extends BaseViewModel {
       coins = result.map((n) => CoinMarket.fromJson(n)).toList();
     } catch (e) {
       throw e;
+    }
+  }
+
+  onRefreshCoin() async {
+    coins = [];
+    page = 1;
+
+    isLoadingMarket = true;
+    notifyListeners();
+
+    await Future.delayed(const Duration(seconds: 2));
+    await getCoinsMarket();
+
+    isLoadingMarket = false;
+    notifyListeners();
+  }
+
+  onFilter(MarketFilterModel? value) {
+    if (value != null) {
+      filterValue = value.key ?? "";
+      onRefreshCoin();
     }
   }
 }

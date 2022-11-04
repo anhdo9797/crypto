@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boiler/data/models/coin_market_model.dart';
 import 'package:flutter_boiler/share/utils/utils.dart';
 import 'package:flutter_boiler/share/widgets/widgets.dart';
+import 'package:skeletons/skeletons.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class CoinsRecommended extends StatelessWidget {
-  const CoinsRecommended({Key? key, required this.coins}) : super(key: key);
+  const CoinsRecommended({Key? key, required this.coins, this.loading = false})
+      : super(key: key);
   final List<CoinMarket> coins;
+  final bool loading;
 
   @override
   Widget build(BuildContext context) {

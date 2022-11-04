@@ -8,22 +8,10 @@ class CoinsApi {
 
   const CoinsApi(this.dioClient);
 
-  Future<Response> getCoinMarket({
-    currency = "usd",
-    order = "market_cap_desc",
-    perPage = 100,
-    page = 1,
-    sparkline = false,
-  }) async {
+  Future<Response> getCoinMarket(queryParameters) async {
     try {
-      final Response response =
-          await dioClient.get(ApiConstant.coinMarket, queryParameters: {
-        "vs_currency": currency,
-        "order": order,
-        "per_page": "$perPage",
-        "page": "$page",
-        "sparkline": "$sparkline"
-      });
+      final Response response = await dioClient.get(ApiConstant.coinMarket,
+          queryParameters: queryParameters);
       return response;
     } catch (e) {
       rethrow;
