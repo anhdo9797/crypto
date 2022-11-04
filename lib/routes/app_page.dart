@@ -19,6 +19,9 @@ extension AppPageExtension on APP_PAGE {
       case APP_PAGE.home:
         return "/home";
 
+      // case APP_PAGE.coinDetail:
+      //   return "/home/";
+
       default:
         /** splash */
         return "/";

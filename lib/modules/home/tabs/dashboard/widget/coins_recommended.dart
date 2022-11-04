@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler/data/models/coin_market_model.dart';
+import 'package:flutter_boiler/data/models/models.dart';
+
 import 'package:flutter_boiler/share/utils/utils.dart';
 import 'package:flutter_boiler/share/widgets/widgets.dart';
-import 'package:skeletons/skeletons.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class CoinsRecommended extends StatelessWidget {
   const CoinsRecommended({Key? key, required this.coins, this.loading = false})
       : super(key: key);
-  final List<CoinMarket> coins;
+  final List<CoinTrending> coins;
   final bool loading;
 
   @override
@@ -21,7 +21,7 @@ class CoinsRecommended extends StatelessWidget {
         itemBuilder: ((context, index) => _buildItem(context, coins[index])));
   }
 
-  _buildItem(BuildContext context, CoinMarket coin) {
+  _buildItem(BuildContext context, CoinTrending coin) {
     final colorScheme = Theme.of(context).colorScheme;
 
     return Container(
@@ -39,10 +39,19 @@ class CoinsRecommended extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ImageWidget(
-                  coin.image ?? "",
-                  width: 30,
-                  height: 30,
+                Row(
+                  children: [
+                    ImageWidget(
+                      coin.large ?? "",
+                      width: 24,
+                      height: 24,
+                    ),
+                    const Space(width: 8),
+                    Text(
+                      "${coin.symbol}",
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
                 ),
                 SizedBox(
                   width: 40,
@@ -50,7 +59,7 @@ class CoinsRecommended extends StatelessWidget {
                   child: WebView(
                     gestureNavigationEnabled: true,
                     javascriptMode: JavascriptMode.unrestricted,
-                    initialUrl: getChartUrl(coin.image),
+                    initialUrl: getChartUrl(coin.thumb),
                     backgroundColor: colorScheme.surface,
                   ),
                 )
@@ -59,19 +68,14 @@ class CoinsRecommended extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(
-                  child: Text(
-                    fixedNumber(coin.priceChange24h, fractionDigits: 3),
-                    style: TextStyle(
-                      color: getColorPercentage(coin.priceChange24h),
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
                 Text(
-                  "${coin.currentPrice}",
+                  "rank",
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(color: colorScheme.onSurface),
+                ),
+                Text(
+                  "${coin.marketCapRank}",
+                  overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),

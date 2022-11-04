@@ -17,4 +17,13 @@ class CoinsApi {
       rethrow;
     }
   }
+
+  Future<Response> getTrendingCoins() async {
+    try {
+      final Response response = await dioClient.get(ApiConstant.coinTrending);
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

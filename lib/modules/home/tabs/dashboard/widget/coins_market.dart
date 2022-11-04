@@ -55,7 +55,7 @@ class CoinsMarket extends StatelessWidget {
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Row(
               children: [
-                ChartImg(coin: coin),
+                ChartImg(coin: coin, width: 50),
                 Text(
                   fixedPercentage(coin.priceChangePercentage24h),
                   style: TextStyle(color: color),

@@ -23,30 +23,7 @@ class DashboardView extends StatelessWidget {
   }
 
   Widget _builder(BuildContext context, DashboardViewModel viewModel) {
-    ColorScheme colorScheme = Theme.of(context).colorScheme;
-
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: false,
-        title: const Icon(Icons.person),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.settings),
-          ),
-          GestureDetector(
-            child: Container(
-              decoration: BoxDecoration(
-                color: colorScheme.surface,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              padding: const EdgeInsets.all(16),
-              child: const Icon(Icons.notifications),
-            ),
-          ),
-          const Space()
-        ],
-      ),
       body: SafeArea(
         minimum: const EdgeInsets.symmetric(horizontal: AppDimension.padding),
         child: viewModel.isInitialized
@@ -64,6 +41,7 @@ class DashboardView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          _buildAppBar(context),
           _buildWallet(context, viewModel),
           const Space(),
           CoinTrendy(coin: coin),
@@ -101,12 +79,43 @@ class DashboardView extends StatelessWidget {
               ],
             ),
           ),
-          if (viewModel.isLoadingMarket)
-            SizedBox(
-              height: 300,
-              child: SkeletonListView(),
-            ),
+          // if (viewModel.isLoadingMarket)
+          //   SizedBox(
+          //     height: 300,
+          //     child: SkeletonListView(),
+          //   ),
           CoinsMarket(coins: viewModel.coins)
+        ],
+      ),
+    );
+  }
+
+  _buildAppBar(context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Icon(Icons.person),
+          Row(
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.settings),
+              ),
+              GestureDetector(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: colorScheme.surface,
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  padding: const EdgeInsets.all(16),
+                  child: const Icon(Icons.notifications),
+                ),
+              ),
+            ],
+          )
         ],
       ),
     );

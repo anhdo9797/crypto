@@ -32,7 +32,7 @@ class DashboardViewModel extends BaseViewModel {
   ];
 
   List<CoinMarket> coins = [];
-  List<CoinMarket> coinsTrending = [];
+  List<CoinTrending> coinsTrending = [];
 
   String filterValue = "desc";
 
@@ -59,8 +59,7 @@ class DashboardViewModel extends BaseViewModel {
 
       List<dynamic> result = json.decode(response);
 
-      coinsTrending =
-          result.reversed.map((n) => CoinMarket.fromJson(n)).toList();
+      coinsTrending = await coinRepository.getTrendingCoins();
     } catch (e) {
       throw e;
     }

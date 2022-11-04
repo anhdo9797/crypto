@@ -9,7 +9,6 @@ class CoinRepository {
 
   CoinRepository(this.coinsApi);
 
-  /// return token
   Future<List<CoinMarket>> getCoinMarket({
     currency = "usd",
     order = "market_cap_desc",
@@ -30,6 +29,20 @@ class CoinRepository {
       List data = response.data;
 
       return data.map((e) => CoinMarket.fromJson(e)).toList();
+    } on DioError catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      throw errorMessage;
+    }
+  }
+
+  Future<List<CoinTrending>> getTrendingCoins() async {
+    try {
+      final response = await coinsApi.getTrendingCoins();
+
+      final data = CoinTrendingResponse.fromJson(response.data);
+      List<CoinTrending> result =
+          data.coins!.map<CoinTrending>((e) => e.item!).toList();
+      return result;
     } on DioError catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();
       throw errorMessage;
