@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AppThemeData {
   static const _lightFillColor = Colors.black;
-  static const _darkFillColor = Colors.white;
+  static final Color _darkFillColor = Colors.white.withOpacity(0.6);
 
   static final Color _lightFocusColor = Colors.black.withOpacity(0.12);
   static final Color _darkFocusColor = Colors.white.withOpacity(0.2);
@@ -18,7 +18,7 @@ class AppThemeData {
     return ThemeData(
       colorScheme: colorScheme,
       textTheme: _textTheme,
-      primaryColor: const Color(0xFF030303),
+      primaryColor: AppColors.primary,
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: colorScheme.background,
         selectedItemColor: colorScheme.primary,

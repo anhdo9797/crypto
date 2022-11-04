@@ -4,6 +4,8 @@ import 'package:flutter_boiler/data/models/user.dart';
 import 'package:flutter_boiler/modules/base/base.dart';
 import 'package:flutter_boiler/modules/home/tabs/dashboard/dashboard_view_model.dart';
 import 'package:flutter_boiler/modules/home/tabs/dashboard/widget/coin_trendy.dart';
+import 'package:flutter_boiler/modules/home/tabs/dashboard/widget/coins_market.dart';
+import 'package:flutter_boiler/modules/home/tabs/dashboard/widget/coins_recommended.dart';
 import 'package:flutter_boiler/share/constants/constants.dart';
 import 'package:flutter_boiler/share/services/user_manager.dart';
 
@@ -44,17 +46,14 @@ class DashboardView extends StatelessWidget {
           const Space()
         ],
       ),
-      body: ContainerWidget(
-        padding: 0,
-        child: SafeArea(
-          child: Container(
-            padding: const EdgeInsets.all(AppDimension.padding),
-            width: SizeConfig().screenWidth,
-            height: SizeConfig().screenHeight,
-            child: viewModel.isInitialized
-                ? SkeletonListView()
-                : _buildBody(context, viewModel),
-          ),
+      body: SafeArea(
+        child: Container(
+          padding: const EdgeInsets.all(AppDimension.padding),
+          width: SizeConfig().screenWidth,
+          height: SizeConfig().screenHeight,
+          child: viewModel.isInitialized
+              ? SkeletonListView()
+              : _buildBody(context, viewModel),
         ),
       ),
     );
@@ -64,12 +63,33 @@ class DashboardView extends StatelessWidget {
     final coin = viewModel.coins.isEmpty ? CoinMarket() : viewModel.coins[0];
     // const symbol = "﹩" | "€";
 
-    return Column(
-      children: [
-        _buildWallet(context, viewModel),
-        const Space(),
-        if (viewModel.coins.isNotEmpty) CoinTrendy(coin: coin)
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildWallet(context, viewModel),
+          const Space(),
+          if (viewModel.coins.isNotEmpty) CoinTrendy(coin: coin),
+          const Space(),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 16),
+            child: Text("Recommended"),
+          ),
+          if (viewModel.coins.isNotEmpty)
+            SizedBox(
+              height: SizeConfig().screenHeight * 0.13,
+              child: CoinsRecommended(
+                coins: viewModel.coins,
+              ),
+            ),
+          const Space(),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 16),
+            child: Text("For you"),
+          ),
+          if (viewModel.coins.isNotEmpty) CoinsMarket(coins: viewModel.coins)
+        ],
+      ),
     );
   }
 
@@ -77,7 +97,6 @@ class DashboardView extends StatelessWidget {
     ColorScheme colorScheme = Theme.of(context).colorScheme;
 
     //TODO: mock
-    const balance = "10,000.89";
     return Container(
       padding: const EdgeInsets.all(AppDimension.padding),
       decoration: BoxDecoration(
@@ -119,7 +138,7 @@ class DashboardView extends StatelessWidget {
           child: StreamBuilder<UserModel>(
             stream: UserManager.user.stream,
             builder: ((context, snapshot) => Text(
-                  "﹩ ${snapshot.data?.balance ?? 0}",
+                  formatCurrency(snapshot.data?.balance),
                   style: const TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
@@ -163,7 +182,11 @@ class DashboardView extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Icon(icon),
+                Icon(
+                  icon,
+                  size: 14,
+                ),
+                const Space(width: 8),
                 Text(label),
               ],
             ),

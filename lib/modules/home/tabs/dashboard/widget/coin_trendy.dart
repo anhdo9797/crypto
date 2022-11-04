@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boiler/data/models/coin_market_model.dart';
+import 'package:flutter_boiler/modules/home/tabs/dashboard/widget/img_line_chart.dart';
 import 'package:flutter_boiler/share/constants/colors.dart';
 import 'package:flutter_boiler/share/constants/dimension.dart';
 import 'package:flutter_boiler/share/utils/utils.dart';
 import 'package:flutter_boiler/share/widgets/widgets.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 class CoinTrendy extends StatelessWidget {
   const CoinTrendy({Key? key, required this.coin}) : super(key: key);
@@ -43,19 +43,10 @@ class CoinTrendy extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: SizedBox(
-                width: 40,
-                height: 20,
-                child: WebView(
-                  gestureNavigationEnabled: true,
-                  javascriptMode: JavascriptMode.unrestricted,
-                  initialUrl: 'https://www.coingecko.com/coins/1/sparkline',
-                  backgroundColor: colorScheme.onBackground,
-                ),
-              ),
+              child: ChartImg(coin: coin),
             ),
             Text(
-              formatPercentage(coin.marketCapChangePercentage24h),
+              fixedPercentage(coin.marketCapChangePercentage24h),
               style: TextStyle(color: color),
             ),
           ],
