@@ -66,7 +66,7 @@ class DashboardView extends StatelessWidget {
         children: [
           _buildWallet(context, viewModel),
           const Space(),
-          if (viewModel.coins.isNotEmpty) CoinTrendy(coin: coin),
+          CoinTrendy(coin: coin),
           const Space(),
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 16),

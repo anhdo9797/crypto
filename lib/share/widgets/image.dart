@@ -31,6 +31,15 @@ class ImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (url == "") {
+      return SizedBox(
+        height: height,
+        width: width,
+        child: const Center(
+          child: Icon(Icons.image),
+        ),
+      );
+    }
     if (url.contains('svg')) {
       return SvgPicture.asset(
         url,
