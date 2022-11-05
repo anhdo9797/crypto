@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boiler/data/models/coin_market_model.dart';
 import 'package:flutter_boiler/modules/home/tabs/dashboard/widget/img_line_chart.dart';
+import 'package:flutter_boiler/routes/routes.dart';
 import 'package:flutter_boiler/share/constants/colors.dart';
 import 'package:flutter_boiler/share/constants/dimension.dart';
 import 'package:flutter_boiler/share/utils/utils.dart';
@@ -26,52 +27,56 @@ class CoinsMarket extends StatelessWidget {
         : AppColors.error;
 
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
-    return Container(
-      decoration: BoxDecoration(
-        color: colorScheme.surface,
-        borderRadius: BorderRadius.circular(AppDimension.padding),
-      ),
-      padding: const EdgeInsets.all(AppDimension.padding),
-      child: Column(
-        children: [
-          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Row(
-              children: [
-                ImageWidget(
-                  coin.image ?? "",
-                  width: 20,
-                  height: 20,
-                ),
-                const Space(),
-                Text(coin.name ?? ""),
-              ],
-            ),
-            Text(
-              formatCurrency(coin.currentPrice),
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-            ),
-          ]),
-          const Space(),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Row(
-              children: [
-                ChartImg(coin: coin, width: 50),
-                Text(
-                  fixedPercentage(coin.priceChangePercentage24h),
-                  style: TextStyle(color: color),
-                ),
-              ],
-            ),
-            const Space(),
-            Flexible(
-              child: Text(
-                fixedNumber(coin.priceChange24h, fractionDigits: 8),
-                style: TextStyle(color: colorScheme.onSurface),
-                overflow: TextOverflow.ellipsis,
+    return InkWell(
+      onTap: () => AppRouter.routes.go('/home/coins/${coin.id}'),
+      child: Container(
+        decoration: BoxDecoration(
+          color: colorScheme.surface,
+          borderRadius: BorderRadius.circular(AppDimension.padding),
+        ),
+        padding: const EdgeInsets.all(AppDimension.padding),
+        child: Column(
+          children: [
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              Row(
+                children: [
+                  ImageWidget(
+                    coin.image ?? "",
+                    width: 20,
+                    height: 20,
+                  ),
+                  const Space(),
+                  Text(coin.name ?? ""),
+                ],
               ),
-            )
-          ]),
-        ],
+              Text(
+                formatCurrency(coin.currentPrice),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              ),
+            ]),
+            const Space(),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              Row(
+                children: [
+                  ChartImg(coin: coin, width: 50),
+                  Text(
+                    fixedPercentage(coin.priceChangePercentage24h),
+                    style: TextStyle(color: color),
+                  ),
+                ],
+              ),
+              const Space(),
+              Flexible(
+                child: Text(
+                  fixedNumber(coin.priceChange24h, fractionDigits: 8),
+                  style: TextStyle(color: colorScheme.onSurface),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              )
+            ]),
+          ],
+        ),
       ),
     );
   }

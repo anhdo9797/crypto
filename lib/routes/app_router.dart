@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_boiler/modules/auth/auth_module.dart';
 import 'package:flutter_boiler/modules/auth/forgot-password/forgot_password.dart';
 import 'package:flutter_boiler/modules/coin_detail/coin_detail.dart';
@@ -57,12 +59,15 @@ class AppRouter {
     path: APP_PAGE.home.toPath,
     name: APP_PAGE.home.toName,
     builder: (context, GoRouterState state) => const HomeView(),
-    // routes: <GoRoute>[
-    //   GoRoute(
-    //     path: "/coins/:coinId",
-    //     // name: APP_PAGE.register.toName,
-    //     builder: (context, GoRouterState state) => const CoinDetailView(),
-    //   ),
-    // ],
+    routes: <GoRoute>[
+      GoRoute(
+        path: "coins/:coinId",
+        builder: (context, GoRouterState state) {
+          final id = state.location.replaceAll('/home/coins/', "");
+
+          return CoinDetailView(id: id);
+        },
+      ),
+    ],
   );
 }
