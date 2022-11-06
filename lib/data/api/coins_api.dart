@@ -26,4 +26,24 @@ class CoinsApi {
       rethrow;
     }
   }
+
+  Future<Response> getMarketChart(String id, queryParameters) async {
+    try {
+      final Response response = await dioClient.get(ApiConstant.marketChart(id),
+          queryParameters: queryParameters);
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<Response> getOhlc(String id, queryParameters) async {
+    try {
+      final Response response = await dioClient.get(ApiConstant.coinOhld(id),
+          queryParameters: queryParameters);
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

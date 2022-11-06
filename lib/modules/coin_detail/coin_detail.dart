@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boiler/modules/base/base.dart';
 import 'package:flutter_boiler/modules/coin_detail/coin_detail_view_model.dart';
+import 'package:candlesticks/candlesticks.dart';
 
 class CoinDetailView extends StatelessWidget {
   const CoinDetailView({Key? key, required this.id}) : super(key: key);
@@ -15,7 +16,16 @@ class CoinDetailView extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(title: Text(id)),
         body: SingleChildScrollView(
-          child: Column(),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 400,
+                child: Candlesticks(
+                  candles: vm.candles,
+                ),
+              )
+            ],
+          ),
         ));
   }
 }

@@ -48,4 +48,38 @@ class CoinRepository {
       throw errorMessage;
     }
   }
+
+  Future<MarketChartResponse> getMarketChart(id,
+      {currency = "usd", days = 1, interval = "daily"}) async {
+    final query = {
+      "vs_currency": currency,
+      "days": "$days",
+      "interval": interval,
+    };
+    try {
+      final response = await coinsApi.getMarketChart(id, query);
+      final data = MarketChartResponse.fromJson(response.data);
+
+      return data;
+    } on DioError catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      throw errorMessage;
+    }
+  }
+
+  // bitcoin/ohlc?vs_currency=usd&days=1
+  Future<List> getOhlc(id, {currency = "usd", days = 7}) async {
+    final query = {
+      "vs_currency": currency,
+      "days": "$days",
+    };
+    try {
+      final response = await coinsApi.getOhlc(id, query);
+
+      return response.data as List;
+    } on DioError catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      throw errorMessage;
+    }
+  }
 }
