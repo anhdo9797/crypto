@@ -44,8 +44,12 @@ dependencies:
   webview_flutter: ^3.0.4
 
   # chart
-  candlesticks: ^2.1.0
+  candlesticks:
+    path: ./package/candlesticks
+
   fl_chart: ^0.55.2
+
+  ably_flutter: ^1.2.15
 
 dev_dependencies:
   flutter_test:

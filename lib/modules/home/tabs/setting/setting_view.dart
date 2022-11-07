@@ -25,7 +25,8 @@ class SettingView extends StatelessWidget {
           final size = SizeConfig();
           final t = AppLocalizations.of(context);
           ColorScheme colorScheme = Theme.of(context).colorScheme;
-          LangProvider langProvider = Provider.of<LangProvider>(context);
+          LangProvider langProvider =
+              Provider.of<LangProvider>(context, listen: false);
 
           return Scaffold(
             body: ContainerWidget(

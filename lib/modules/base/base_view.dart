@@ -21,8 +21,9 @@ class BaseView<T extends BaseViewModel> extends StatefulWidget {
 class _BaseViewState<T extends BaseViewModel> extends State<BaseView<T>> {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<T>.value(
-      value: widget.vmBuilder(context),
+    return ChangeNotifierProvider<T>(
+      lazy: true,
+      create: (context) => widget.vmBuilder(context),
       child: Consumer<T>(
         builder: _buildScreenContent,
       ),
@@ -40,4 +41,9 @@ class _BaseViewState<T extends BaseViewModel> extends State<BaseView<T>> {
           )
         ],
       );
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 }

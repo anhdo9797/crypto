@@ -23,7 +23,7 @@ class LoginView extends StatelessWidget {
   }
 
   Widget _buildBodyView(BuildContext context, LoginViewModel viewModel) {
-    final themProvider = Provider.of<ThemeProvider>(context);
+    final themProvider = Provider.of<ThemeProvider>(context, listen: false);
     return Scaffold(
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {

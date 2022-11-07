@@ -1,9 +1,10 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_boiler/share/utils/app_localizations.dart';
 
-abstract class BaseViewModel extends ChangeNotifier {
+abstract class BaseViewModel with ChangeNotifier {
   bool _isLoading = false;
   bool _isDisposed = false;
   bool _isInitializeDone = false;

@@ -15,7 +15,7 @@ class SettingViewModel extends BaseViewModel {
 
   @override
   FutureOr<void> init() {
-    authProvider = Provider.of<AuthProvider>(context);
+    authProvider = Provider.of<AuthProvider>(context, listen: false);
   }
 
   void logout() {

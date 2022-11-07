@@ -23,8 +23,9 @@ class App extends StatelessWidget {
       child: Builder(
         builder: ((context) {
           final ThemeProvider themeProvider =
-              Provider.of<ThemeProvider>(context);
-          final langProvider = Provider.of<LangProvider>(context);
+              Provider.of<ThemeProvider>(context, listen: false);
+          final langProvider =
+              Provider.of<LangProvider>(context, listen: false);
 
           return MaterialApp.router(
             title: AppConfig.of(context).appTitle,
