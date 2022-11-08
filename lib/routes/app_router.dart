@@ -66,7 +66,7 @@ class AppRouter {
           final id = state.location.replaceAll('/home/coins/', "");
 
           return SecureAppSwitcherPage(
-            style: SecureMaskStyle.dark,
+            style: SecureMaskStyle.blurDark,
             child: CoinDetailView(id: id),
           );
         },

@@ -23,5 +23,5 @@ Future<void> setup() async {
   getIt.registerSingleton(CoinsApi(getIt<DioClient>()));
   getIt.registerSingleton(CoinRepository(getIt.get<CoinsApi>()));
 
-  getIt.registerSingletonAsync<AblyService>(() => AblyService.init());
+  // getIt.registerSingletonAsync<AblyService>(() => AblyService.init());
 }

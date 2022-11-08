@@ -8,16 +8,14 @@ import 'package:flutter_boiler/data/models/models.dart';
 import 'package:flutter_boiler/data/repositories/coin_repository.dart';
 import 'package:flutter_boiler/di/service_locator.dart';
 import 'package:flutter_boiler/modules/base/base.dart';
-import 'package:flutter_boiler/share/services/ably_service.dart';
 import 'package:ably_flutter/ably_flutter.dart' as ably;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:web_socket_channel/io.dart';
-import 'package:web_socket_channel/status.dart' as status;
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class CoinDetailViewModel extends BaseViewModel {
   final CoinRepository coinRepository = getIt.get<CoinRepository>();
-  final AblyService ablyService = getIt.get<AblyService>();
+  // final AblyService ablyService = getIt.get<AblyService>();
 
   final String id;
   CoinDetailViewModel(this.id);
@@ -74,9 +72,6 @@ class CoinDetailViewModel extends BaseViewModel {
     final Stream<ably.Message> messageStream = channel.subscribe();
     return messageStream.where((event) => event.data != null).listen((message) {
       final price = double.parse("${message.data}");
-      final random = Random().nextInt(10);
-
-      develop.log("price: $price");
 
       final currentCandle = Candle(
         date: DateTime.now(),
