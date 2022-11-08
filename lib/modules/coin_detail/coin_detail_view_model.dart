@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:developer' as develop;
 import 'dart:math';
 
@@ -10,6 +11,9 @@ import 'package:flutter_boiler/modules/base/base.dart';
 import 'package:flutter_boiler/share/services/ably_service.dart';
 import 'package:ably_flutter/ably_flutter.dart' as ably;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:web_socket_channel/io.dart';
+import 'package:web_socket_channel/status.dart' as status;
+import 'package:web_socket_channel/web_socket_channel.dart';
 
 class CoinDetailViewModel extends BaseViewModel {
   final CoinRepository coinRepository = getIt.get<CoinRepository>();
@@ -21,10 +25,13 @@ class CoinDetailViewModel extends BaseViewModel {
   MarketChartResponse chartData = MarketChartResponse();
   List<Candle> candles = [];
   late StreamSubscription<ably.Message> listen;
+  WebSocketChannel? channel;
+
   @override
   FutureOr<void> init() async {
     getMarketChart();
-    listen = _coinChange();
+    connectSocket();
+    // listen = _coinChange();
   }
 
   void getMarketChart() async {
@@ -48,8 +55,10 @@ class CoinDetailViewModel extends BaseViewModel {
   @override
   void dispose() async {
     develop.log("remove listening");
-    // TODO: implement dispose
-    await listen.cancel().then((value) => develop.log("remove listening"));
+    // await listen.cancel();
+    if (channel != null) {
+      channel!.sink.close();
+    }
     super.dispose();
   }
 
@@ -57,10 +66,8 @@ class CoinDetailViewModel extends BaseViewModel {
     final clientOptions =
         ably.ClientOptions(key: dotenv.get("ABLY_KEY_ROOT_KEY"));
 
-    // Use ClientOptions to create Realtime or REST instance
     ably.Realtime realtime = ably.Realtime(options: clientOptions);
     realtime.connect();
-    ably.Rest rest = ably.Rest(options: clientOptions);
 
     final channelName = "[product:ably-coindesk/bitcoin]$id:usd";
     final channel = realtime.channels.get(channelName);
@@ -68,18 +75,42 @@ class CoinDetailViewModel extends BaseViewModel {
     return messageStream.where((event) => event.data != null).listen((message) {
       final price = double.parse("${message.data}");
       final random = Random().nextInt(10);
-      final low = price - random;
 
       develop.log("price: $price");
-      candles.add(Candle(
-          date: DateTime.now(),
-          high: price + Random().nextInt(900),
-          low: price - Random().nextInt(100),
-          open: price - Random().nextDouble() * 190,
-          close: price - Random().nextDouble() * 120,
-          volume: price));
+
+      final currentCandle = Candle(
+        date: DateTime.now(),
+        high: price + Random().nextInt(3),
+        low: price - Random().nextInt(3),
+        open: price - Random().nextDouble() * 2,
+        close: price + Random().nextDouble() * 2,
+        volume: price,
+      );
+      candles = [
+        currentCandle,
+        ...candles,
+      ];
 
       notifyListeners();
+    });
+  }
+
+  connectSocket() async {
+    channel = IOWebSocketChannel.connect(
+        Uri.parse('wss://stream.binance.com:9443/ws'));
+
+    channel!.sink.add(
+      jsonEncode(
+        {
+          "method": "SUBSCRIBE",
+          "params": ["BNBBTC" + "@kline_" + '1m'],
+          "id": 1
+        },
+      ),
+    );
+
+    channel!.stream.listen((event) {
+      develop.log("channel.stream.listen: $event");
     });
   }
 }

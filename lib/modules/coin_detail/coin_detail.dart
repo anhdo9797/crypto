@@ -23,7 +23,7 @@ class CoinDetailView extends StatelessWidget {
                 child: Candlesticks(
                   candles: vm.candles,
                 ),
-              )
+              ),
             ],
           ),
         ));

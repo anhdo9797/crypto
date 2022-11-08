@@ -469,6 +469,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.27.5"
+  secure_app_switcher:
+    dependency: "direct main"
+    description:
+      name: secure_app_switcher
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0+1"
   shared_preferences:
     dependency: "direct main"
     description:
@@ -635,6 +642,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
+  web_socket_channel:
+    dependency: "direct main"
+    description:
+      name: web_socket_channel
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.2.0"
   webview_flutter:
     dependency: "direct main"
     description:

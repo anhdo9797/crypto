@@ -50,6 +50,9 @@ dependencies:
   fl_chart: ^0.55.2
 
   ably_flutter: ^1.2.15
+  web_socket_channel: ^2.2.0
+
+  secure_app_switcher: ^0.1.0+1
 
 dev_dependencies:
   flutter_test:

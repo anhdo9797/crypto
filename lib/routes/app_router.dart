@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter_boiler/modules/auth/auth_module.dart';
 import 'package:flutter_boiler/modules/auth/forgot-password/forgot_password.dart';
 import 'package:flutter_boiler/modules/coin_detail/coin_detail.dart';
@@ -8,6 +6,7 @@ import 'package:flutter_boiler/modules/onboard/onboard_view.dart';
 import 'package:flutter_boiler/modules/splash/splash_view.dart';
 import 'package:flutter_boiler/routes/routes.dart';
 import 'package:go_router/go_router.dart';
+import 'package:secure_app_switcher/secure_app_switcher.dart';
 
 class AppRouter {
   static final AppRouter _appRouter = AppRouter._internal();
@@ -20,6 +19,7 @@ class AppRouter {
 
   static final GoRouter routes = GoRouter(
     debugLogDiagnostics: true,
+    observers: [secureAppSwitcherRouteObserver],
     initialLocation: "/",
     routes: <GoRoute>[
       GoRoute(
@@ -65,7 +65,10 @@ class AppRouter {
         builder: (context, GoRouterState state) {
           final id = state.location.replaceAll('/home/coins/', "");
 
-          return CoinDetailView(id: id);
+          return SecureAppSwitcherPage(
+            style: SecureMaskStyle.dark,
+            child: CoinDetailView(id: id),
+          );
         },
       ),
     ],

@@ -5,6 +5,7 @@ import 'package:flutter_boiler/data/local/pref.dart';
 import 'package:flutter_boiler/di/service_locator.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:secure_app_switcher/secure_app_switcher.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -12,7 +13,7 @@ void main() async {
 
   await AppPref.init();
   await dotenv.load(fileName: ".env.dev");
-
+  SecureAppSwitcher.on(iosStyle: SecureMaskStyle.blurLight);
   setup();
 
   final configuredApp = AppConfig(
