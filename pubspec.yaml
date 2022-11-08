@@ -53,6 +53,8 @@ dependencies:
   web_socket_channel: ^2.2.0
 
   secure_app_switcher: ^0.1.0+1
+  live_activities:
+    path: ./package/live_activities
 
 dev_dependencies:
   flutter_test:
