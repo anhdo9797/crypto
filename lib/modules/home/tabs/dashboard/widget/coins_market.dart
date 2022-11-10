@@ -40,10 +40,13 @@ class CoinsMarket extends StatelessWidget {
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               Row(
                 children: [
-                  ImageWidget(
-                    coin.image ?? "",
-                    width: 20,
-                    height: 20,
+                  Hero(
+                    tag: coin.symbol ?? "symbol",
+                    child: ImageWidget(
+                      coin.image ?? "",
+                      width: 20,
+                      height: 20,
+                    ),
                   ),
                   const Space(),
                   Text(coin.name ?? ""),

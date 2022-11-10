@@ -55,6 +55,7 @@ dependencies:
   secure_app_switcher: ^0.1.0+1
   live_activities:
     path: ./package/live_activities
+  flutter_html: ^3.0.0-alpha.6
 
 dev_dependencies:
   flutter_test:

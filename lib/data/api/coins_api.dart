@@ -46,4 +46,14 @@ class CoinsApi {
       rethrow;
     }
   }
+
+  Future<Response> getCoinDetail(String id, queryParameters) async {
+    try {
+      final Response response = await dioClient.get("${ApiConstant.coin}$id",
+          queryParameters: queryParameters);
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

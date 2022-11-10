@@ -82,4 +82,32 @@ class CoinRepository {
       throw errorMessage;
     }
   }
+
+  // https://api.coingecko.com/api/v3/coins/bitcoin?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false
+  Future<CoinDetail> getCoinDetail(
+    id, {
+    localization = "false",
+    tickers = "false",
+    market_data = "true",
+    community_data = 'false',
+    developer_data = "false",
+    sparkline = "false",
+  }) async {
+    final query = {
+      "localization": "false",
+      "tickers": "false",
+      "market_data": "true",
+      "community_data": 'false',
+      "developer_data": "false",
+      "sparkline": "false",
+    };
+    try {
+      final response = await coinsApi.getCoinDetail(id, query);
+
+      return CoinDetail.fromJson(response.data);
+    } on DioError catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      throw errorMessage;
+    }
+  }
 }

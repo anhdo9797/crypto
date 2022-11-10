@@ -1,42 +1,61 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer' as develop;
-import 'dart:math';
 
 import 'package:candlesticks/candlesticks.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_boiler/data/models/models.dart';
 import 'package:flutter_boiler/data/repositories/coin_repository.dart';
 import 'package:flutter_boiler/di/service_locator.dart';
 import 'package:flutter_boiler/modules/base/base.dart';
-import 'package:ably_flutter/ably_flutter.dart' as ably;
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:live_activities/live_activities.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class CoinDetailViewModel extends BaseViewModel {
   final CoinRepository coinRepository = getIt.get<CoinRepository>();
   // final AblyService ablyService = getIt.get<AblyService>();
+  final _liveActivitiesPlugin = LiveActivities();
+  String? _latestActivityId;
 
   final String id;
   CoinDetailViewModel(this.id);
 
+  WebSocketChannel? channel;
+
+  /// state
   MarketChartResponse chartData = MarketChartResponse();
   List<Candle> candles = [];
-  late StreamSubscription<ably.Message> listen;
-  WebSocketChannel? channel;
+  CoinDetail coin = CoinDetail();
+  double position = 0;
+
+  late Timer timerRequest;
+  late ScrollController scrollViewController;
+
+  List<String> filter = ["1d", "7d", "14d", "1m"];
 
   @override
   FutureOr<void> init() async {
+    scrollViewController = ScrollController();
+
     getMarketChart();
-    connectSocket();
-    // listen = _coinChange();
+
+    await getCoin();
+    _startActivities();
+
+    timerRequest = Timer.periodic(const Duration(seconds: 30), (timer) {
+      getMarketChart();
+      getCoin();
+      _updateActivity();
+    });
+
+    scrollViewController.addListener(_scrollListener);
   }
 
   void getMarketChart() async {
     try {
       final data = await coinRepository.getOhlc(id);
-
-      candles = [...data, ...data, ...data]
+      candles = [...data]
           .reversed
           .map((e) => Candle(
               date: DateTime.fromMillisecondsSinceEpoch(e[0]),
@@ -50,44 +69,26 @@ class CoinDetailViewModel extends BaseViewModel {
     } catch (e) {}
   }
 
+  getCoin() async {
+    try {
+      coin = await coinRepository.getCoinDetail(id);
+      notifyListeners();
+
+      develop.log('CurrentPrice: ${coin.marketData?.currentPrice?.usd ?? 0}');
+    } catch (e) {
+      develop.log("Get coin error: $e");
+    }
+  }
+
   @override
   void dispose() async {
     develop.log("remove listening");
-    // await listen.cancel();
-    if (channel != null) {
-      channel!.sink.close();
-    }
+
+    timerRequest.cancel();
+    scrollViewController.dispose();
+    _liveActivitiesPlugin.endActivity(_latestActivityId ?? "");
+
     super.dispose();
-  }
-
-  StreamSubscription<ably.Message> _coinChange() {
-    final clientOptions =
-        ably.ClientOptions(key: dotenv.get("ABLY_KEY_ROOT_KEY"));
-
-    ably.Realtime realtime = ably.Realtime(options: clientOptions);
-    realtime.connect();
-
-    final channelName = "[product:ably-coindesk/bitcoin]$id:usd";
-    final channel = realtime.channels.get(channelName);
-    final Stream<ably.Message> messageStream = channel.subscribe();
-    return messageStream.where((event) => event.data != null).listen((message) {
-      final price = double.parse("${message.data}");
-
-      final currentCandle = Candle(
-        date: DateTime.now(),
-        high: price + Random().nextInt(3),
-        low: price - Random().nextInt(3),
-        open: price - Random().nextDouble() * 2,
-        close: price + Random().nextDouble() * 2,
-        volume: price,
-      );
-      candles = [
-        currentCandle,
-        ...candles,
-      ];
-
-      notifyListeners();
-    });
   }
 
   connectSocket() async {
@@ -106,6 +107,32 @@ class CoinDetailViewModel extends BaseViewModel {
 
     channel!.stream.listen((event) {
       develop.log("channel.stream.listen: $event");
+    });
+  }
+
+  _scrollListener() {
+    if (scrollViewController.offset >=
+            scrollViewController.position.maxScrollExtent &&
+        !scrollViewController.position.outOfRange) {}
+
+    position = scrollViewController.offset;
+    notifyListeners();
+  }
+
+  /// live activities handler
+  _startActivities() async {
+    _latestActivityId = await _liveActivitiesPlugin.createActivity({
+      "name": coin.name ?? "",
+      "symbol": coin.symbol ?? "",
+      "price": "${coin.marketData?.currentPrice?.usd ?? 0}"
+    });
+  }
+
+  _updateActivity() async {
+    _liveActivitiesPlugin.updateActivity(_latestActivityId ?? "", {
+      "name": coin.name ?? "",
+      "symbol": coin.symbol ?? "",
+      "price": "${coin.marketData?.currentPrice?.usd ?? 0}"
     });
   }
 }

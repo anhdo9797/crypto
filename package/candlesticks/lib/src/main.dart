@@ -139,6 +139,8 @@ class _CandlesticksState extends State<Candlesticks> {
           ToolBar(
             color: style.toolBarColor,
             children: [
+              ...widget.actions,
+              Expanded(child: SizedBox()),
               if (widget.displayZoomActions) ...[
                 ToolBarAction(
                   onPressed: () {
@@ -165,7 +167,6 @@ class _CandlesticksState extends State<Candlesticks> {
                   ),
                 ),
               ],
-              ...widget.actions
             ],
           ),
         ],

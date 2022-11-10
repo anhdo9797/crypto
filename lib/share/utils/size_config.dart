@@ -17,6 +17,7 @@ class SizeConfig {
   double? profileDrawerWidth;
   late double refHeight;
   late double refWidth;
+  late double top;
 
   void init(BuildContext context) {
     _mediaQueryData = MediaQuery.of(context);
@@ -24,6 +25,7 @@ class SizeConfig {
     screenHeight = _mediaQueryData.size.height;
     refHeight = 1450;
     refWidth = 670;
+    top = MediaQuery.of(context).viewPadding.top;
 
     if (screenHeight < 1200) {
       blockSizeHorizontal = screenWidth / 100;

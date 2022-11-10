@@ -22,7 +22,7 @@ Color getColorPercentage(num? value) {
 String formatCurrency(num? value) {
   if (value == null) return "";
   final oCcy = NumberFormat("#,##0.00", "en_US");
-  return '﹩ ${oCcy.format(value).replaceAll("-", "")}';
+  return '＄ ${oCcy.format(value).replaceAll("-", "")}';
 }
 
 String getChartUrl(String? image) {
