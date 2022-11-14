@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler/share/constants/string.dart';
+import 'package:flutter_boiler/share/constants/value.dart';
 
 enum Environment { dev, prod }
 
@@ -7,9 +7,9 @@ extension EnvironmentExtension on Environment {
   String get toAppName {
     switch (this) {
       case Environment.dev:
-        return "${AppString.appName} [dev]";
+        return "${AppValue.appName} [dev]";
       default:
-        return AppString.appName;
+        return AppValue.appName;
     }
   }
 }

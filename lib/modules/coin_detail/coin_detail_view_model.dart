@@ -8,6 +8,7 @@ import 'package:flutter_boiler/data/models/models.dart';
 import 'package:flutter_boiler/data/repositories/coin_repository.dart';
 import 'package:flutter_boiler/di/service_locator.dart';
 import 'package:flutter_boiler/modules/base/base.dart';
+import 'package:flutter_boiler/share/constants/constants.dart';
 import 'package:live_activities/live_activities.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
@@ -86,7 +87,9 @@ class CoinDetailViewModel extends BaseViewModel {
 
     timerRequest.cancel();
     scrollViewController.dispose();
-    _liveActivitiesPlugin.endActivity(_latestActivityId ?? "");
+    if (AppValue.isIos) {
+      _liveActivitiesPlugin.endActivity(_latestActivityId ?? "");
+    }
 
     super.dispose();
   }
@@ -121,18 +124,22 @@ class CoinDetailViewModel extends BaseViewModel {
 
   /// live activities handler
   _startActivities() async {
-    _latestActivityId = await _liveActivitiesPlugin.createActivity({
-      "name": coin.name ?? "",
-      "symbol": coin.symbol ?? "",
-      "price": "${coin.marketData?.currentPrice?.usd ?? 0}"
-    });
+    if (AppValue.isIos) {
+      _latestActivityId = await _liveActivitiesPlugin.createActivity({
+        "name": coin.name ?? "",
+        "symbol": coin.symbol ?? "",
+        "price": "${coin.marketData?.currentPrice?.usd ?? 0}"
+      });
+    }
   }
 
   _updateActivity() async {
-    _liveActivitiesPlugin.updateActivity(_latestActivityId ?? "", {
-      "name": coin.name ?? "",
-      "symbol": coin.symbol ?? "",
-      "price": "${coin.marketData?.currentPrice?.usd ?? 0}"
-    });
+    if (AppValue.isIos) {
+      _liveActivitiesPlugin.updateActivity(_latestActivityId ?? "", {
+        "name": coin.name ?? "",
+        "symbol": coin.symbol ?? "",
+        "price": "${DateTime.now().millisecondsSinceEpoch}"
+      });
+    }
   }
 }

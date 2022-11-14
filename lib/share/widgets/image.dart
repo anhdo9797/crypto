@@ -47,6 +47,7 @@ class ImageWidget extends StatelessWidget {
         fit: fit,
         width: width,
         height: height,
+        color: color,
       );
     }
 

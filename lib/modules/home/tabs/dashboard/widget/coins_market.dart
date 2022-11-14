@@ -28,7 +28,9 @@ class CoinsMarket extends StatelessWidget {
 
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
     return InkWell(
-      onTap: () => AppRouter.routes.go('/home/coins/${coin.id}'),
+      onTap: () => AppRouter.routes.go(
+        '/home/coins/${coin.id}?img=${coin.image}',
+      ),
       child: Container(
         decoration: BoxDecoration(
           color: colorScheme.surface,
@@ -46,6 +48,7 @@ class CoinsMarket extends StatelessWidget {
                       coin.image ?? "",
                       width: 20,
                       height: 20,
+                      semanticsLabel: coin.symbol ?? "symbol",
                     ),
                   ),
                   const Space(),

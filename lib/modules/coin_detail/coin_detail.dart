@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boiler/modules/base/base.dart';
 import 'package:flutter_boiler/modules/coin_detail/coin_detail_view_model.dart';
-import 'package:candlesticks/candlesticks.dart'; 
+import 'package:candlesticks/candlesticks.dart';
 import 'package:flutter_boiler/share/utils/format.dart';
 import 'package:flutter_boiler/share/utils/size_config.dart';
 import 'package:flutter_boiler/share/widgets/widgets.dart';
 import 'package:flutter_html/flutter_html.dart';
 
 class CoinDetailView extends StatelessWidget {
-  const CoinDetailView({Key? key, required this.id}) : super(key: key);
+  const CoinDetailView({
+    Key? key,
+    required this.id,
+  }) : super(key: key);
   final String id;
   @override
   Widget build(BuildContext context) {
@@ -92,76 +95,93 @@ class CoinDetailView extends StatelessWidget {
       pinned: true,
       snap: false,
       expandedHeight: 120,
+      centerTitle: false,
       backgroundColor: colorScheme.primary,
       flexibleSpace: FlexibleSpaceBar(
-        title: vm.position < 66
-            ? Padding(
-                padding: const EdgeInsets.only(bottom: 40),
-                child: Text(
-                  vm.coin.name ?? "",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: colorScheme.onSurface,
-                  ),
+        title: vm.position >= 40
+            ? AnimatedOpacity(
+                opacity: vm.position >= 50 ? 1 : 0,
+                duration: const Duration(seconds: 2),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      formatCurrency(vm.coin.marketData?.currentPrice?.usd),
+                      style: TextStyle(
+                        color: colorScheme.onSurface,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 16),
+                      child: ImageWidget(
+                        vm.coin.image?.large ?? "",
+                        width: 20,
+                        height: 20,
+                        semanticsLabel: vm.coin.symbol ?? "symbol",
+                      ),
+                    ),
+                  ],
                 ),
               )
-            : Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Space(),
-                  Text(
-                    formatCurrency(vm.coin.marketData?.currentPrice?.usd),
-                    style: const TextStyle(
-                      fontSize: 26,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 16),
-                    child: ImageWidget(
-                      vm.coin.image?.large ?? "",
-                      width: 24,
-                      height: 24,
-                      semanticsLabel: vm.coin.symbol ?? "",
-                    ),
-                  ),
-                ],
-              ),
+            : const Text(""),
         background: Stack(
           children: [
+            Positioned(
+              top: SizeConfig().top,
+              left: 72,
+              child: SizedBox(
+                height: kToolbarHeight,
+                child: Center(
+                  child: Text(
+                    vm.coin.name ?? "",
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: colorScheme.onSurface,
+                    ),
+                  ),
+                ),
+              ),
+            ),
             Positioned(
                 bottom: 0,
                 left: 0,
                 right: 0,
                 child: Container(
                   color: colorScheme.background,
-                  height: 56,
+                  height: 120 - 56,
                   padding: const EdgeInsets.only(left: 16),
-                  child: Center(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          formatCurrency(vm.coin.marketData?.currentPrice?.usd),
-                          style: const TextStyle(
-                            // color: colorScheme.onSurface,
-                            fontSize: 26,
-                            fontWeight: FontWeight.bold,
-                          ),
+                  child: Column(
+                    children: [
+                      Center(
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              formatCurrency(
+                                  vm.coin.marketData?.currentPrice?.usd),
+                              style: const TextStyle(
+                                // color: colorScheme.onSurface,
+                                fontSize: 26,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const Space(),
+                            Text(
+                              "≈ ${fixedPercentage(vm.coin.marketData?.marketCapChangePercentage24h)}",
+                              style: TextStyle(
+                                color: getColorPercentage(vm.coin.marketData
+                                    ?.marketCapChangePercentage24h),
+                                fontSize: 16,
+                                letterSpacing: 0.1,
+                              ),
+                            ),
+                          ],
                         ),
-                        const Space(),
-                        Text(
-                          "≈ ${fixedPercentage(vm.coin.marketData?.marketCapChangePercentage24h)}",
-                          style: TextStyle(
-                            color: getColorPercentage(vm
-                                .coin.marketData?.marketCapChangePercentage24h),
-                            fontSize: 16,
-                            letterSpacing: 0.1,
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 )),
             Positioned(

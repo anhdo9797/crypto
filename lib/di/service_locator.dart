@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter_boiler/data/api/api.dart';
 import 'package:flutter_boiler/data/repositories/coin_repository.dart';
 import 'package:flutter_boiler/data/repositories/repositories.dart';
-import 'package:flutter_boiler/share/services/ably_service.dart';
 import 'package:flutter_boiler/share/services/user_manager.dart';
 import 'package:get_it/get_it.dart';
 

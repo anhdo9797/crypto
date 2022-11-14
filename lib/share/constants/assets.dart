@@ -18,4 +18,8 @@ class Assets {
       : "assets/launcher_icon/logo.png";
 
   static const walletContainer = 'assets/images/svg/wallet_container.svg';
+
+  //icon
+  static const dashboard = 'assets/icons/dashboard.svg';
+  static const setting = 'assets/icons/setting.svg';
 }

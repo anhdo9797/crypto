@@ -1,5 +1,5 @@
 export 'colors.dart';
-export 'string.dart';
+export 'value.dart';
 export 'assets.dart';
 export 'app_theme.dart';
 export 'dimension.dart';

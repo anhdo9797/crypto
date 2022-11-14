@@ -57,6 +57,9 @@ dependencies:
     path: ./package/live_activities
   flutter_html: ^3.0.0-alpha.6
 
+  build_runner: ^2.3.2
+  json_serializable: ^6.5.4
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -75,3 +78,4 @@ flutter:
     - .env.dev
     - .env.prod
     - assets/mock/
+    - assets/icons/

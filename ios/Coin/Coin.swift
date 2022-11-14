@@ -25,8 +25,10 @@ struct Coin: Widget {
             // MARK: Lock screen
             let coin = CoinData(JSONData: context.state.data)
             VStack(alignment: .leading) {
-                Text("\(coin!.name) is on the way!")
-                    .font(.title2)
+                Image(systemName: "bitcoinsign.circle.fill")
+                    .frame(width: 80.0, height: 80.0)
+//                Text("\(coin!.name) is on the way!")
+//                    .font(.title2)
 
                 Spacer()
                 VStack {

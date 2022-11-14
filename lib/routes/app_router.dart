@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_boiler/modules/auth/auth_module.dart';
 import 'package:flutter_boiler/modules/auth/forgot-password/forgot_password.dart';
 import 'package:flutter_boiler/modules/coin_detail/coin_detail.dart';
@@ -63,7 +65,7 @@ class AppRouter {
       GoRoute(
         path: "coins/:coinId",
         builder: (context, GoRouterState state) {
-          final id = state.location.replaceAll('/home/coins/', "");
+          final id = state.params["coinId"] ?? "";
 
           return SecureAppSwitcherPage(
             style: SecureMaskStyle.blurDark,
