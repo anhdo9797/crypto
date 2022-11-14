@@ -22,8 +22,6 @@ class App extends StatelessWidget {
       ],
       child: Builder(
         builder: ((context) {
-          final ThemeProvider themeProvider =
-              Provider.of<ThemeProvider>(context, listen: false);
           final langProvider =
               Provider.of<LangProvider>(context, listen: false);
 
@@ -32,16 +30,17 @@ class App extends StatelessWidget {
             scaffoldMessengerKey: scaffoldMessengerKey,
             routerConfig: AppRouter.routes,
             debugShowCheckedModeBanner: false,
-            theme: themeProvider.theme,
-            // theme: ThemeData(
-            //     colorSchemeSeed: const Color(0xff6750a4), useMaterial3: true),
+            theme: context.watch<ThemeProvider>().theme,
             localizationsDelegates: const [
               AppLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
             ],
-            locale: Locale(langProvider.locale, langProvider.getCode()),
+            locale: Locale(
+              context.read<LangProvider>().locale,
+              langProvider.getCode(),
+            ),
             supportedLocales: AppLanguage.supportLocale,
           );
         }),

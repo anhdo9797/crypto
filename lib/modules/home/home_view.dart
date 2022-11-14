@@ -1,3 +1,4 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boiler/modules/home/tabs/dashboard/dashboard_view.dart';
 import 'package:flutter_boiler/modules/home/tabs/setting/setting.dart';
@@ -41,43 +42,24 @@ class _HomeViewState extends State<HomeView>
         index: tabIndex,
         children: tabs,
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: tabIndex,
+      bottomNavigationBar: CurvedNavigationBar(
+        buttonBackgroundColor: colorScheme.primaryContainer,
+        backgroundColor: Colors.transparent,
+        color: colorScheme.surface,
+        height: kBottomNavigationBarHeight,
         onTap: (value) => setState(() => tabIndex = value),
-        showSelectedLabels: false,
+        animationDuration: const Duration(milliseconds: 400),
         items: bottomTabs
-            .map<BottomNavigationBarItem>(
-              (button) => BottomNavigationBarItem(
-                label: button['name'],
-                icon: Column(
-                  children: [
-                    if (tabIndex == bottomTabs.indexOf(button)) ...[
-                      Container(
-                        width: 8,
-                        height: 8,
-                        decoration: BoxDecoration(
-                          color: colorScheme.primary,
-                          shape: BoxShape.circle,
-                        ),
-                      ),
-                      const Space(height: 8),
-                    ],
-                    ImageWidget(
-                      button['icon'],
-                      color: tabIndex == bottomTabs.indexOf(button)
-                          ? colorScheme.primary
-                          : colorScheme.onSurface,
-                    ),
-                  ],
-                ),
+            .map(
+              (button) => ImageWidget(
+                button['icon'],
+                color: Colors.white,
               ),
             )
             .toList(),
       ),
     );
   }
-
-  _buildIcon() {}
 
   @override
   bool get wantKeepAlive => true;

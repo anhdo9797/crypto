@@ -26,6 +26,7 @@ class ThemeProvider with ChangeNotifier {
   }
 
   void onChangeTheme(bool value) {
+    log("Change theme: $value");
     AppPref.isDarkMode = value;
     if (value) {
       _themeMode = ThemeMode.dark;
