@@ -97,32 +97,34 @@ class CoinDetailView extends StatelessWidget {
       expandedHeight: 120,
       centerTitle: false,
       backgroundColor: colorScheme.primary,
+      titleSpacing: 12,
+      actions: [
+        AnimatedOpacity(
+          opacity: vm.position >= 20 ? 1 : 0,
+          duration: const Duration(seconds: 1),
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: ImageWidget(
+              vm.coin.image?.large ?? "",
+              semanticsLabel: vm.coin.symbol ?? "symbol",
+              fit: BoxFit.contain,
+            ),
+          ),
+        )
+      ],
       flexibleSpace: FlexibleSpaceBar(
+        centerTitle: true,
         title: vm.position >= 40
             ? AnimatedOpacity(
                 opacity: vm.position >= 50 ? 1 : 0,
                 duration: const Duration(seconds: 2),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      formatCurrency(vm.coin.marketData?.currentPrice?.usd),
-                      style: TextStyle(
-                        color: colorScheme.onSurface,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 16),
-                      child: ImageWidget(
-                        vm.coin.image?.large ?? "",
-                        width: 20,
-                        height: 20,
-                        semanticsLabel: vm.coin.symbol ?? "symbol",
-                      ),
-                    ),
-                  ],
+                child: Text(
+                  formatCurrency(vm.coin.marketData?.currentPrice?.usd),
+                  style: TextStyle(
+                    color: colorScheme.onSurface,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               )
             : const Text(""),

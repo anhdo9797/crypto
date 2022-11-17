@@ -5,11 +5,11 @@ class CoinDetail {
   int? blockTimeInMinutes;
   Description? description;
   Image? image;
-  double? coingeckoScore;
-  double? developerScore;
-  double? communityScore;
-  double? liquidityScore;
-  double? publicInterestScore;
+  num? coingeckoScore;
+  num? developerScore;
+  num? communityScore;
+  num? liquidityScore;
+  num? publicInterestScore;
   MarketData? marketData;
   String? lastUpdated;
 
@@ -113,16 +113,16 @@ class Image {
 
 class MarketData {
   CurrentPrice? currentPrice;
-  double? priceChange24h;
-  double? priceChangePercentage24h;
-  double? priceChangePercentage7d;
-  double? priceChangePercentage14d;
-  double? priceChangePercentage30d;
-  double? priceChangePercentage60d;
-  double? priceChangePercentage200d;
-  double? priceChangePercentage1y;
-  double? marketCapChange24h;
-  double? marketCapChangePercentage24h;
+  num? priceChange24h;
+  num? priceChangePercentage24h;
+  num? priceChangePercentage7d;
+  num? priceChangePercentage14d;
+  num? priceChangePercentage30d;
+  num? priceChangePercentage60d;
+  num? priceChangePercentage200d;
+  num? priceChangePercentage1y;
+  num? marketCapChange24h;
+  num? marketCapChangePercentage24h;
   String? lastUpdated;
 
   MarketData(
@@ -178,8 +178,8 @@ class MarketData {
 }
 
 class CurrentPrice {
-  double? usd;
-  double? vef;
+  num? usd;
+  num? vef;
   int? vnd;
 
   CurrentPrice({this.usd, this.vef, this.vnd});

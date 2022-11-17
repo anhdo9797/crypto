@@ -40,13 +40,11 @@ class CoinDetailViewModel extends BaseViewModel {
     scrollViewController = ScrollController();
 
     getMarketChart();
-
-    await getCoin();
-    _startActivities();
+    getCoin();
 
     timerRequest = Timer.periodic(const Duration(seconds: 30), (timer) {
       getMarketChart();
-      getCoin();
+      getCoin(isInit: false);
       _updateActivity();
     });
 
@@ -70,7 +68,7 @@ class CoinDetailViewModel extends BaseViewModel {
     } catch (e) {}
   }
 
-  getCoin() async {
+  getCoin({isInit = true}) async {
     try {
       coin = await coinRepository.getCoinDetail(id);
       notifyListeners();
@@ -78,6 +76,12 @@ class CoinDetailViewModel extends BaseViewModel {
       develop.log('CurrentPrice: ${coin.marketData?.currentPrice?.usd ?? 0}');
     } catch (e) {
       develop.log("Get coin error: $e");
+    }
+
+    if (isInit) {
+      _startActivities();
+    } else {
+      _updateActivity();
     }
   }
 
@@ -126,9 +130,11 @@ class CoinDetailViewModel extends BaseViewModel {
   _startActivities() async {
     if (AppValue.isIos) {
       _latestActivityId = await _liveActivitiesPlugin.createActivity({
-        "name": coin.name ?? "",
-        "symbol": coin.symbol ?? "",
-        "price": "${coin.marketData?.currentPrice?.usd ?? 0}"
+        "name": coin.name ?? "Bitcoin",
+        "symbol": coin.symbol ?? "btc",
+        "price": "${coin.marketData?.currentPrice?.usd ?? 0}",
+        "image": coin.image?.thumb ??
+            "https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png?1547033579",
       });
     }
   }
@@ -138,7 +144,8 @@ class CoinDetailViewModel extends BaseViewModel {
       _liveActivitiesPlugin.updateActivity(_latestActivityId ?? "", {
         "name": coin.name ?? "",
         "symbol": coin.symbol ?? "",
-        "price": "${DateTime.now().millisecondsSinceEpoch}"
+        "price": "${coin.marketData?.currentPrice?.usd ?? 0}",
+        "image": coin.image?.thumb ?? ""
       });
     }
   }

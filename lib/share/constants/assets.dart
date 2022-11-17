@@ -22,4 +22,5 @@ class Assets {
   //icon
   static const dashboard = 'assets/icons/dashboard.svg';
   static const setting = 'assets/icons/setting.svg';
+  static const wallet = 'assets/icons/wallet.svg';
 }

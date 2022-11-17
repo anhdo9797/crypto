@@ -18,18 +18,23 @@ struct LiveActivitiesAppAttributes: ActivityAttributes, Identifiable {
 
     var id = UUID()
 }
+
+
 @available(iOSApplicationExtension 16.1, *)
 struct Coin: Widget {
+
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: LiveActivitiesAppAttributes.self) { context in
             // MARK: Lock screen
             let coin = CoinData(JSONData: context.state.data)
+            let img = getSavedImage(named: coin?.symbol ?? "")
             VStack(alignment: .leading) {
-                Image(systemName: "bitcoinsign.circle.fill")
-                    .frame(width: 80.0, height: 80.0)
-//                Text("\(coin!.name) is on the way!")
-//                    .font(.title2)
-
+                if img != nil {
+                    Image(uiImage: img!)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 50, height: 50)
+                }
                 Spacer()
                 VStack {
                     Text("$\(coin!.price)")
@@ -49,6 +54,16 @@ struct Coin: Widget {
                 DynamicIslandExpandedRegion(.leading) {
                     Text("\(coin!.symbol)".uppercased())
                         .lineLimit(1)
+                    Image(systemName: "Logo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 50, height: 50)
+                    if let imageContainer = getSavedImage(named: "btc") {
+                        Image(uiImage: imageContainer)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 50, height: 50)
+                    }
                 }
                 DynamicIslandExpandedRegion(.center) {
                     Text("$: \(coin!.price)")
@@ -83,6 +98,14 @@ struct Coin: Widget {
             }
                 .keylineTint(.accentColor)
         }
+    }
+
+    func getSavedImage(named: String) -> UIImage? {
+        if let dir = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) {
+            print("path image: \(dir.absoluteString)")
+            return UIImage(contentsOfFile: URL(fileURLWithPath: dir.absoluteString).appendingPathComponent(named).path)
+        }
+        return nil
     }
 
 }
