@@ -17,6 +17,7 @@ class CoinsMarket extends StatelessWidget {
         separatorBuilder: (context, index) => const Space(),
         itemCount: coins.length,
         shrinkWrap: true,
+        cacheExtent: 10,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: ((context, index) => _buildItem(context, coins[index])));
   }
@@ -28,6 +29,7 @@ class CoinsMarket extends StatelessWidget {
 
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
     return InkWell(
+      mouseCursor: SystemMouseCursors.click,
       onTap: () => AppRouter.routes.go(
         '/home/coins/${coin.id}?img=${coin.image}',
       ),

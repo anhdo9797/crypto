@@ -60,6 +60,7 @@ dependencies:
   build_runner: ^2.3.2
   json_serializable: ^6.5.4
   curved_navigation_bar: ^1.0.3
+  convex_bottom_bar: ^3.1.0+1
 
 dev_dependencies:
   flutter_test:
@@ -71,12 +72,17 @@ flutter:
   generate: true
   uses-material-design: true
 
+  fonts:
+    - family: CreditCard
+      fonts:
+        - asset: assets/font/CREDC.ttf
+
   assets:
-    - assets/images/png/
     - assets/images/svg/
+    - assets/images/png/
     - assets/lang/
     - assets/launcher_icon/
-    - .env.dev
-    - .env.prod
     - assets/mock/
     - assets/icons/
+    - .env.dev
+    - .env.prod

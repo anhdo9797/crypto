@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:skeletons/skeletons.dart';
 
-/** Component use for assetImage, networkImage, svg */
+/* Component use for assetImage, networkImage, svg */
 
 class ImageWidget extends StatelessWidget {
   const ImageWidget(

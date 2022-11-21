@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boiler/modules/base/base.dart';
 import 'package:flutter_boiler/modules/coin_detail/coin_detail_view_model.dart';
 import 'package:candlesticks/candlesticks.dart';
-import 'package:flutter_boiler/share/utils/format.dart';
-import 'package:flutter_boiler/share/utils/size_config.dart';
+import 'package:flutter_boiler/share/utils/utils.dart';
 import 'package:flutter_boiler/share/widgets/widgets.dart';
 import 'package:flutter_html/flutter_html.dart';
 
@@ -21,7 +20,7 @@ class CoinDetailView extends StatelessWidget {
 
   Widget _buildBody(BuildContext context, CoinDetailViewModel vm) {
     final size = SizeConfig();
-    ColorScheme colorScheme = Theme.of(context).colorScheme;
+    // ColorScheme colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
       body: Stack(
@@ -29,7 +28,7 @@ class CoinDetailView extends StatelessWidget {
           CustomScrollView(
             controller: vm.scrollViewController,
             slivers: [
-              _buildAppBar(colorScheme, vm),
+              _buildAppBar(context.colors, vm),
               SliverToBoxAdapter(
                 child: Column(
                   children: [
@@ -38,23 +37,23 @@ class CoinDetailView extends StatelessWidget {
                       child: Candlesticks(
                         candles: vm.candles,
                         style: CandleSticksStyle.dark(
-                          background: colorScheme.background,
-                          toolBarColor: colorScheme.background,
+                          background: context.colors.background,
+                          toolBarColor: context.colors.background,
                         ),
                         actions: vm.filter
                             .map((e) => ToolBarAction(
                                   width: size.screenWidth * 0.15,
                                   child: Text(
                                     e,
-                                    style:
-                                        TextStyle(color: colorScheme.onSurface),
+                                    style: TextStyle(
+                                        color: context.colors.onSurface),
                                   ),
                                   onPressed: () {},
                                 ))
                             .toList(),
                       ),
                     ),
-                    _buildDescription(vm, colorScheme)
+                    _buildDescription(vm, context.colors)
                   ],
                 ),
               ),
@@ -72,7 +71,7 @@ class CoinDetailView extends StatelessWidget {
                     child: ButtonWidget(
                       label: "Selling",
                       onPressed: () {},
-                      backgroundColor: colorScheme.error,
+                      backgroundColor: context.colors.error,
                     ),
                   ),
                   const Space(),

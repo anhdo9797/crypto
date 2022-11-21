@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 class SizeConfig {
@@ -18,6 +20,7 @@ class SizeConfig {
   late double refHeight;
   late double refWidth;
   late double top;
+  late double bottom;
 
   void init(BuildContext context) {
     _mediaQueryData = MediaQuery.of(context);
@@ -26,6 +29,8 @@ class SizeConfig {
     refHeight = 1450;
     refWidth = 670;
     top = MediaQuery.of(context).viewPadding.top;
+    bottom = MediaQuery.of(context).padding.bottom;
+    log(" bottom: $bottom");
 
     if (screenHeight < 1200) {
       blockSizeHorizontal = screenWidth / 100;

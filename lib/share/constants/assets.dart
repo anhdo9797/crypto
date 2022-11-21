@@ -23,4 +23,11 @@ class Assets {
   static const dashboard = 'assets/icons/dashboard.svg';
   static const setting = 'assets/icons/setting.svg';
   static const wallet = 'assets/icons/wallet.svg';
+
+  // card widget
+  static const card = 'assets/images/svg/card1.svg';
+  static const card2 = 'assets/images/svg/card2.svg';
+  static const chip = 'assets/images/svg/chip.svg';
+  static const visa = 'assets/images/png/visa.png';
+  static const cardBg = "assets/images/png/credit-card.png";
 }
