@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flutter_boiler/modules/add_wallet/add_wallet.dart';
 import 'package:flutter_boiler/modules/auth/auth_module.dart';
 import 'package:flutter_boiler/modules/auth/forgot-password/forgot_password.dart';
 import 'package:flutter_boiler/modules/coin_detail/coin_detail.dart';
@@ -71,6 +72,13 @@ class AppRouter {
             style: SecureMaskStyle.blurDark,
             child: CoinDetailView(id: id),
           );
+        },
+      ),
+      GoRoute(
+        path: APP_PAGE.addWallet.toPath,
+        name: APP_PAGE.addWallet.toName,
+        builder: (context, GoRouterState state) {
+          return const AddWalletView();
         },
       ),
     ],

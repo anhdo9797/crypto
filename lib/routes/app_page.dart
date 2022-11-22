@@ -1,5 +1,13 @@
 // ignore: camel_case_types
-enum APP_PAGE { splash, onboard, auth, register, forgotPassword, home }
+enum APP_PAGE {
+  splash,
+  onboard,
+  auth,
+  register,
+  forgotPassword,
+  home,
+  addWallet
+}
 
 extension AppPageExtension on APP_PAGE {
   String get toPath {
@@ -18,6 +26,8 @@ extension AppPageExtension on APP_PAGE {
 
       case APP_PAGE.home:
         return "/home";
+      case APP_PAGE.addWallet:
+        return "add-wallet";
 
       // case APP_PAGE.coinDetail:
       //   return "/home/";
@@ -40,6 +50,8 @@ extension AppPageExtension on APP_PAGE {
         return "forgot-password";
       case APP_PAGE.onboard:
         return "onboard";
+      case APP_PAGE.addWallet:
+        return "addWallet";
       default:
         return "splash";
     }

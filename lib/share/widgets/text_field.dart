@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class TextFieldWidget extends StatelessWidget {
   final String? hint;
@@ -17,6 +18,7 @@ class TextFieldWidget extends StatelessWidget {
   final bool autoFocus;
   final TextInputAction? inputAction;
   final String? Function(String?)? validator;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +35,7 @@ class TextFieldWidget extends StatelessWidget {
         maxLength: 25,
         keyboardType: inputType,
         style: Theme.of(context).textTheme.bodyText1,
+        inputFormatters: inputFormatters,
         decoration: InputDecoration(
           label: label != null ? Text(label ?? "") : null,
           hintText: hint,
@@ -69,5 +72,6 @@ class TextFieldWidget extends StatelessWidget {
     this.inputAction,
     this.label,
     this.validator,
+    this.inputFormatters,
   }) : super(key: key);
 }
