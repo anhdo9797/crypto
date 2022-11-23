@@ -79,11 +79,6 @@ class DashboardView extends StatelessWidget {
               ],
             ),
           ),
-          // if (viewModel.isLoadingMarket)
-          //   SizedBox(
-          //     height: 300,
-          //     child: SkeletonListView(),
-          //   ),
           CoinsMarket(coins: viewModel.coins)
         ],
       ),
@@ -124,7 +119,6 @@ class DashboardView extends StatelessWidget {
   _buildWallet(BuildContext context, DashboardViewModel viewModel) {
     ColorScheme colorScheme = Theme.of(context).colorScheme;
 
-    //TODO: mock
     return Container(
       padding: const EdgeInsets.all(AppDimension.padding),
       decoration: BoxDecoration(
@@ -168,19 +162,19 @@ class DashboardView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             _buildButton(
-              color: Colors.black,
+              color: context.colors.tertiary,
               label: "Transfer",
               icon: Icons.transform_rounded,
             ),
             _buildButton(
-              color: colorScheme.inverseSurface,
+              color: colorScheme.onSurface.withOpacity(0.3),
               label: "Deposit",
               icon: Icons.currency_exchange_rounded,
             ),
             _buildButton(
               label: "Swap",
               icon: Icons.swap_calls_outlined,
-              color: colorScheme.inverseSurface,
+              color: colorScheme.onSurface.withOpacity(0.3),
             ),
           ],
         )

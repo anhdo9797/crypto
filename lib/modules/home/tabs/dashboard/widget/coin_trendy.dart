@@ -19,7 +19,7 @@ class CoinTrendy extends StatelessWidget {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
     return Container(
       decoration: BoxDecoration(
-          color: colorScheme.onBackground,
+          color: colorScheme.tertiary,
           borderRadius: BorderRadius.circular(AppDimension.padding)),
       padding: const EdgeInsets.all(AppDimension.padding),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [

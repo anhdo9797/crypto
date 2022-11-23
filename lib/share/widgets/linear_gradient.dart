@@ -51,7 +51,7 @@ class LinearContainer extends StatelessWidget {
       default:
         return [
           colorScheme.background,
-          colorScheme.onBackground.withOpacity(0.7),
+          colorScheme.surface.withOpacity(0.7),
         ];
     }
   }

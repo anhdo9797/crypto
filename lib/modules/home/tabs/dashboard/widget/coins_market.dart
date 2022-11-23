@@ -33,57 +33,57 @@ class CoinsMarket extends StatelessWidget {
       onTap: () => AppRouter.routes.go(
         '/home/coins/${coin.id}?img=${coin.image}',
       ),
-      child: Container(
-        decoration: BoxDecoration(
-          color: colorScheme.surface,
-          borderRadius: BorderRadius.circular(AppDimension.padding),
-        ),
-        padding: const EdgeInsets.all(AppDimension.padding),
-        child: Column(
-          children: [
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              Row(
-                children: [
-                  Hero(
-                    tag: coin.symbol ?? "symbol",
-                    child: ImageWidget(
-                      coin.image ?? "",
-                      width: 20,
-                      height: 20,
-                      semanticsLabel: coin.symbol ?? "symbol",
+      child: Card(
+        // semanticContainer: false,
+        // surfaceTintColor: Colors.red,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                Row(
+                  children: [
+                    Hero(
+                      tag: coin.symbol ?? "symbol",
+                      child: ImageWidget(
+                        coin.image ?? "",
+                        width: 20,
+                        height: 20,
+                        semanticsLabel: coin.symbol ?? "symbol",
+                      ),
                     ),
-                  ),
-                  const Space(),
-                  Text(coin.name ?? ""),
-                ],
-              ),
-              Text(
-                formatCurrency(coin.currentPrice),
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-              ),
-            ]),
-            const Space(),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              Row(
-                children: [
-                  ChartImg(coin: coin, width: 50),
-                  Text(
-                    fixedPercentage(coin.priceChangePercentage24h),
-                    style: TextStyle(color: color),
-                  ),
-                ],
-              ),
-              const Space(),
-              Flexible(
-                child: Text(
-                  fixedNumber(coin.priceChange24h, fractionDigits: 8),
-                  style: TextStyle(color: colorScheme.onSurface),
-                  overflow: TextOverflow.ellipsis,
+                    const Space(),
+                    Text(coin.name ?? ""),
+                  ],
                 ),
-              )
-            ]),
-          ],
+                Text(
+                  formatCurrency(coin.currentPrice),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 18),
+                ),
+              ]),
+              const Space(),
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                Row(
+                  children: [
+                    ChartImg(coin: coin, width: 50),
+                    Text(
+                      fixedPercentage(coin.priceChangePercentage24h),
+                      style: TextStyle(color: color),
+                    ),
+                  ],
+                ),
+                const Space(),
+                Flexible(
+                  child: Text(
+                    fixedNumber(coin.priceChange24h, fractionDigits: 8),
+                    style: TextStyle(color: colorScheme.onSurface),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                )
+              ]),
+            ],
+          ),
         ),
       ),
     );

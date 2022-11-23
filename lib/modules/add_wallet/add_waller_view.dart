@@ -14,9 +14,7 @@ class AddWalletView extends StatelessWidget {
     return BaseView<AddWalletViewModel>(
       vmBuilder: (_) => AddWalletViewModel(),
       builder: (context, vm) => Scaffold(
-        appBar: AppBar(
-          title: Text("add wallet"),
-        ),
+        appBar: AppBar(),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
           child: Column(
@@ -25,16 +23,16 @@ class AddWalletView extends StatelessWidget {
                 id: vm.id,
                 date: vm.date,
                 nameHolder: vm.name,
-                bankName: "VCB",
+                bankName: vm.bankName,
                 isFront: vm.isFront,
-                cvv: vm.ccv,
+                cvv: vm.cvv,
               ),
               const Space(),
               TextFieldWidget(
                 label: "BANK NAME",
-                textController: vm.cardIdController,
+                textController: vm.bankNameController,
                 hint: "Bank Name",
-                // onChanged: (S),
+                onChanged: vm.onChangeBankName,
               ),
               const Space(),
               TextFieldWidget(
@@ -42,9 +40,9 @@ class AddWalletView extends StatelessWidget {
                 textController: vm.cardIdController,
                 hint: "XXXX - XXXX ......",
                 inputType: TextInputType.number,
+                onChanged: vm.onChangeCardId,
                 inputFormatters: [
                   CreditCardNumberInputFormatter(),
-                  MaskedInputFormatter('####-####-####-####')
                 ],
               ),
               const Space(),
@@ -52,6 +50,7 @@ class AddWalletView extends StatelessWidget {
                 label: "VALIDATE THUR",
                 textController: vm.dateController,
                 hint: "DD/MM",
+                onChanged: vm.onChangeDate,
                 inputFormatters: [
                   CreditCardExpirationDateFormatter(),
                 ],
@@ -61,6 +60,7 @@ class AddWalletView extends StatelessWidget {
                 label: "NAME HOLDER",
                 textController: vm.nameController,
                 hint: "ex: John",
+                onChanged: vm.onChangeName,
               ),
               const Space(),
               TextFieldWidget(
@@ -69,6 +69,7 @@ class AddWalletView extends StatelessWidget {
                 hint: "CVV",
                 focusNode: vm.cvvFocus,
                 inputType: TextInputType.number,
+                onChanged: vm.onChangeCvv,
                 inputFormatters: [
                   CreditCardCvcInputFormatter(),
                 ],

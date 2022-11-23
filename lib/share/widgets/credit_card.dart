@@ -14,6 +14,7 @@ class CreditCard extends StatelessWidget {
     this.isFront = true,
     required this.bankName,
     required this.cvv,
+    this.duration = const Duration(milliseconds: 800),
   }) : super(key: key);
 
   final String id;
@@ -21,6 +22,7 @@ class CreditCard extends StatelessWidget {
   final String nameHolder;
   final String bankName;
   final String cvv;
+  final Duration duration;
 
   final bool isFront;
 
@@ -28,7 +30,7 @@ class CreditCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return TweenAnimationBuilder(
         tween: Tween<double>(begin: isFront ? 180 : 0, end: !isFront ? 180 : 0),
-        duration: const Duration(seconds: 1),
+        duration: duration,
         builder: (BuildContext context, double deg, Widget? child) {
           return Transform(
             alignment: Alignment.topCenter,
@@ -56,7 +58,7 @@ class CreditCard extends StatelessWidget {
           : TweenAnimationBuilder(
               tween:
                   Tween<double>(begin: !isFront ? 0 : 1, end: isFront ? 0 : 1),
-              duration: const Duration(milliseconds: 1500),
+              duration: duration,
               builder: ((context, double value, child) {
                 return Opacity(
                   opacity: value,
@@ -67,94 +69,82 @@ class CreditCard extends StatelessWidget {
   }
 
   Widget frontWidget(BuildContext context) {
-    return TweenAnimationBuilder(
-        tween: Tween<double>(begin: isFront ? 0 : 1, end: !isFront ? 0 : 1),
-        duration: const Duration(milliseconds: 1500),
-        builder: ((context, double value, child) {
-          return Opacity(
-            opacity: value,
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text(
+                bankName.toUpperCase(),
+                textAlign: TextAlign.right,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          const ImageWidget(Assets.chip, width: 40, height: 36),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                id,
+                style: const TextStyle(
+                  fontFamily: "CreditCard",
+                  fontSize: 16,
+                ),
+              ),
+              Text(
+                "4000",
+                style: TextStyle(
+                  fontFamily: "CreditCard",
+                  fontSize: 6,
+                  color: context.colors.onSurface,
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        bankName.toUpperCase(),
-                        textAlign: TextAlign.right,
-                        style: const TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ],
+                  Text(
+                    "VALIDATE\nTHUR",
+                    style:
+                        context.textTheme.displaySmall!.copyWith(fontSize: 7),
                   ),
-                  const ImageWidget(Assets.chip, width: 40, height: 36),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        id,
-                        style: const TextStyle(
-                          fontFamily: "CreditCard",
-                          fontSize: 16,
-                        ),
-                      ),
-                      Text(
-                        "4000",
-                        style: TextStyle(
-                          fontFamily: "CreditCard",
-                          fontSize: 6,
-                          color: context.colors.onSurface,
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            "VALIDATE\nTHUR",
-                            style: context.textTheme.displaySmall!
-                                .copyWith(fontSize: 7),
-                          ),
-                          const Space(),
-                          Text(
-                            date,
-                            style: context.textTheme.labelMedium!.copyWith(
-                                fontFamily: "CreditCard", fontSize: 12),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        nameHolder,
-                        style: const TextStyle(
-                          fontFamily: "CreditCard",
-                          fontSize: 18,
-                        ),
-                      ),
-                      const ImageWidget(
-                        Assets.visa,
-                        width: 80,
-                        fit: BoxFit.contain,
-                      ),
-                    ],
+                  const Space(),
+                  Text(
+                    date,
+                    style: context.textTheme.labelMedium!
+                        .copyWith(fontFamily: "CreditCard", fontSize: 12),
                   ),
                 ],
               ),
-            ),
-          );
-        }));
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                nameHolder,
+                style: const TextStyle(
+                  fontFamily: "CreditCard",
+                  fontSize: 18,
+                ),
+              ),
+              CardUtils.getCardIcon(id) ?? const SizedBox()
+            ],
+          ),
+        ],
+      ),
+    );
   }
 
   Widget backWidget() {
     return TweenAnimationBuilder(
         tween: Tween<double>(begin: !isFront ? 0 : 1, end: !isFront ? 1 : 0),
-        duration: const Duration(milliseconds: 1500),
+        duration: duration,
         builder: ((context, double value, child) {
           return Opacity(
             opacity: value,
