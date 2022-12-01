@@ -1,5 +1,4 @@
-import 'dart:developer';
-
+import 'package:flutter/material.dart';
 import 'package:flutter_boiler/modules/add_wallet/add_wallet.dart';
 import 'package:flutter_boiler/modules/auth/auth_module.dart';
 import 'package:flutter_boiler/modules/auth/forgot-password/forgot_password.dart';
@@ -10,6 +9,29 @@ import 'package:flutter_boiler/modules/splash/splash_view.dart';
 import 'package:flutter_boiler/routes/routes.dart';
 import 'package:go_router/go_router.dart';
 import 'package:secure_app_switcher/secure_app_switcher.dart';
+
+_buildPageTransition({required Widget child}) => CustomTransitionPage(
+      transitionDuration: const Duration(milliseconds: 600),
+      child: child,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(1.5, 0);
+        const end = Offset.zero;
+        const curve = Curves.ease;
+
+        var tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+        return FadeTransition(
+          opacity: animation,
+          child: SlideTransition(
+            position: animation.drive(tween),
+            child: ScaleTransition(
+              scale: animation,
+              child: child,
+            ),
+          ),
+        );
+      },
+    );
 
 class AppRouter {
   static final AppRouter _appRouter = AppRouter._internal();
@@ -64,22 +86,21 @@ class AppRouter {
     builder: (context, GoRouterState state) => const HomeView(),
     routes: <GoRoute>[
       GoRoute(
-        path: "coins/:coinId",
-        builder: (context, GoRouterState state) {
-          final id = state.params["coinId"] ?? "";
-
-          return SecureAppSwitcherPage(
-            style: SecureMaskStyle.blurDark,
-            child: CoinDetailView(id: id),
-          );
-        },
-      ),
+          path: "coins/:coinId",
+          pageBuilder: (context, state) {
+            final id = state.params["coinId"] ?? "";
+            return _buildPageTransition(
+              child: SecureAppSwitcherPage(
+                style: SecureMaskStyle.blurDark,
+                child: CoinDetailView(id: id),
+              ),
+            );
+          }),
       GoRoute(
         path: APP_PAGE.addWallet.toPath,
         name: APP_PAGE.addWallet.toName,
-        builder: (context, GoRouterState state) {
-          return const AddWalletView();
-        },
+        pageBuilder: (context, state) =>
+            _buildPageTransition(child: const AddWalletView()),
       ),
     ],
   );

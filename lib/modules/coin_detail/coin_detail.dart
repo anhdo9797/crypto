@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boiler/modules/base/base.dart';
 import 'package:flutter_boiler/modules/coin_detail/coin_detail_view_model.dart';
 import 'package:candlesticks/candlesticks.dart';
+import 'package:flutter_boiler/routes/routes.dart';
 import 'package:flutter_boiler/share/utils/utils.dart';
 import 'package:flutter_boiler/share/widgets/widgets.dart';
 import 'package:flutter_html/flutter_html.dart';

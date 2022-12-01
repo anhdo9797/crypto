@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boiler/modules/add_wallet/add_wallet.dart';
 import 'package:flutter_boiler/modules/base/base.dart';
-import 'package:flutter_boiler/share/constants/assets.dart';
 import 'package:flutter_boiler/share/widgets/widgets.dart';
-import '../../share/utils/utils.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 
 class AddWalletView extends StatelessWidget {
