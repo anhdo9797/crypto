@@ -70,9 +70,9 @@ class CoinDetailView extends StatelessWidget {
                 children: [
                   Expanded(
                     child: ButtonWidget(
-                      label: "Selling",
+                      label: "Sell",
                       onPressed: () {},
-                      backgroundColor: context.colors.error,
+                      backgroundColor: context.colors.onSecondary,
                     ),
                   ),
                   const Space(),
@@ -121,7 +121,7 @@ class CoinDetailView extends StatelessWidget {
                 child: Text(
                   formatCurrency(vm.coin.marketData?.currentPrice?.usd),
                   style: TextStyle(
-                    color: colorScheme.onSurface,
+                    // color: colorScheme.onSurface,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
@@ -141,7 +141,7 @@ class CoinDetailView extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
-                      color: colorScheme.onSurface,
+                      // color: colorScheme.onSurface,
                     ),
                   ),
                 ),

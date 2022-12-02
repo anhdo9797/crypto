@@ -1,12 +1,11 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_boiler/modules/base/base.dart';
-import 'package:flutter_boiler/share/constants/assets.dart';
+import 'package:flutter_boiler/share/constants/app_type.dart';
+
 import 'package:flutter_boiler/share/utils/utils.dart';
 import 'package:flutter_boiler/share/widgets/widgets.dart';
 import 'package:intl/intl.dart';
-
+import 'package:carousel_slider/carousel_slider.dart';
 import './wallet.dart';
 
 class WalletView extends StatelessWidget {
@@ -21,121 +20,112 @@ class WalletView extends StatelessWidget {
   }
 
   Widget _builder(BuildContext context, WalletViewModel vm) {
-    final formatter = NumberFormat(',####');
-    final value = formatter.format(1234567892124892).replaceAll(',', ' - ');
-
     return Scaffold(
-      appBar: AppBar(title: const Text("Wallet")),
-      body: Column(
-        children: [
-          // AnimatedRotation(
-          //   turns: 0.2,
-          //   duration: const Duration(seconds: 1),
-          //   child: creditCard(context, value),
-          // ),
-          TweenAnimationBuilder(
-              tween: Tween<double>(
-                  begin: vm.isFront ? 180 : 0, end: !vm.isFront ? 180 : 0),
-              duration: const Duration(seconds: 1),
-              builder: (BuildContext context, double deg, Widget? child) {
-                return Transform(
-                  alignment: Alignment.center,
-                  transform: Matrix4.identity()
-                    ..setEntry(3, 2, 0.001)
-                    ..rotateY(-deg / 180 * pi),
-                  child: creditCard(context, value),
-                );
-              }),
-
-          ButtonWidget(onPressed: vm.onToggleCard, label: "add cvc")
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: EdgeInsets.only(
+                top: context.sizeConfig.top + 16,
+                left: 16,
+                right: 16,
+                bottom: 16,
+              ),
+              decoration: BoxDecoration(
+                color: context.colors.primary,
+              ),
+              width: context.sizeConfig.screenWidth,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("My balance:",
+                      style: context.titleMedium!.copyWith(
+                        color: Colors.white,
+                      )),
+                  _buildTotalBallance(context, vm),
+                ],
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text("My Cards: "),
+                ButtonWidget(
+                  icon: const Icon(Icons.add),
+                  type: ButtonType.icon,
+                  onPressed: vm.addCard,
+                  label: '',
+                  padding: 8,
+                )
+              ],
+            ),
+            CarouselSlider(
+              items: vm.creditCards
+                  .map((e) => CreditCard(
+                      id: e.id,
+                      date: e.date!,
+                      nameHolder: e.nameHolder!,
+                      bankName: e.bankName!,
+                      cvv: e.cvv!))
+                  .toList(),
+              options: CarouselOptions(
+                height: 220,
+                aspectRatio: 16 / 9,
+                viewportFraction: 0.8,
+                initialPage: 0,
+                enableInfiniteScroll: true,
+                reverse: false,
+                autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                autoPlayCurve: Curves.fastOutSlowIn,
+                enlargeCenterPage: true,
+                scrollDirection: Axis.horizontal,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 
-  Container creditCard(BuildContext context, String value) {
-    return Container(
-      width: context.sizeConfig.screenWidth - (16 * 2),
-      height: (context.sizeConfig.screenWidth - (16 * 2)) / 1.5,
-      padding: const EdgeInsets.all(16),
-      margin: const EdgeInsets.all(16),
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(16)),
-        image: DecorationImage(
-          image: AssetImage(Assets.cardBg),
-          fit: BoxFit.cover,
-        ),
+  Widget _buildTotalBallance(BuildContext context, WalletViewModel vm) {
+    return AnimatedCrossFade(
+      duration: const Duration(milliseconds: 800),
+      firstChild: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            formatCurrency(122123333),
+            style: context.titleLarge!.copyWith(color: Colors.white),
+          ),
+          IconButton(
+            onPressed: vm.onToggleBalance,
+            icon: const Icon(Icons.visibility_off, color: Colors.white),
+          )
+        ],
       ),
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: const [
-                Text(
-                  "BANK NAME",
-                  textAlign: TextAlign.right,
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ],
+      secondChild: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const Text(
+            "＄ ***",
+            style: TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1,
             ),
-            const ImageWidget(Assets.chip, width: 40, height: 36),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  value,
-                  style: const TextStyle(
-                    fontFamily: "CreditCard",
-                    fontSize: 16,
-                  ),
-                ),
-                Text(
-                  "4000",
-                  style: TextStyle(
-                    fontFamily: "CreditCard",
-                    fontSize: 6,
-                    color: context.colors.onSurface,
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      "VALIDATE\nTHUR",
-                      style:
-                          context.textTheme.displaySmall!.copyWith(fontSize: 7),
-                    ),
-                    const Space(),
-                    Text(
-                      "12/20",
-                      style: context.textTheme.labelMedium!
-                          .copyWith(fontFamily: "CreditCard", fontSize: 12),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Text(
-                  "DO CONG PHUOC ANH",
-                  style: TextStyle(
-                    fontFamily: "CreditCard",
-                    fontSize: 18,
-                  ),
-                ),
-                ImageWidget(
-                  Assets.visa,
-                  width: 80,
-                  fit: BoxFit.contain,
-                ),
-              ],
-            ),
-          ]),
+          ),
+          IconButton(
+            onPressed: vm.onToggleBalance,
+            icon: const Icon(Icons.visibility),
+          )
+        ],
+      ),
+      crossFadeState: vm.isShowBalance
+          ? CrossFadeState.showFirst
+          : CrossFadeState.showSecond,
     );
   }
 }

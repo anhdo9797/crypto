@@ -11,9 +11,9 @@ class CreditCard extends StatelessWidget {
     required this.id,
     required this.date,
     required this.nameHolder,
-    this.isFront = true,
     required this.bankName,
     required this.cvv,
+    this.isFront = true,
     this.duration = const Duration(milliseconds: 800),
   }) : super(key: key);
 
@@ -133,7 +133,12 @@ class CreditCard extends StatelessWidget {
                   fontSize: 18,
                 ),
               ),
-              CardUtils.getCardIcon(id) ?? const SizedBox()
+              Container(
+                constraints: const BoxConstraints(
+                  maxWidth: 80,
+                ),
+                child: CardUtils.getCardIcon(id) ?? const SizedBox(),
+              )
             ],
           ),
         ],

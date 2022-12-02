@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler/share/constants/app_type.dart';
+
 import 'package:flutter_boiler/share/constants/constants.dart';
 import 'package:flutter_boiler/share/widgets/widgets.dart';
+import 'package:flutter_boiler/share/utils/utils.dart';
 
 class ButtonWidget extends StatelessWidget {
   const ButtonWidget({
@@ -14,6 +15,7 @@ class ButtonWidget extends StatelessWidget {
     this.colors,
     this.labelStyle = const TextStyle(color: AppColors.lightText),
     this.backgroundColor,
+    this.padding = 16.0,
   }) : super(key: key);
 
   final ButtonType type;
@@ -24,6 +26,7 @@ class ButtonWidget extends StatelessWidget {
   final List<Color>? colors;
   final Color? backgroundColor;
   final TextStyle labelStyle;
+  final double padding;
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +59,21 @@ class ButtonWidget extends StatelessWidget {
                     decoration: TextDecoration.underline,
                   ),
             ));
+      case ButtonType.icon:
+        return Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: onPressed,
+            child: Container(
+              decoration: BoxDecoration(
+                color: backgroundColor ?? context.colors.primary,
+                borderRadius: BorderRadius.circular(padding),
+              ),
+              padding: EdgeInsets.all(padding),
+              child: icon,
+            ),
+          ),
+        );
       case ButtonType.ghost:
         return TextButton(
             onPressed: onPressed, child: child ?? Text(label ?? ""));
@@ -67,7 +85,7 @@ class ButtonWidget extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(AppDimension.borderRadius),
             ),
-            side: const BorderSide(color: AppColors.primary, width: 1),
+            side: BorderSide(color: context.colors.primary, width: 1),
           ),
           child: _child,
         );
@@ -78,7 +96,7 @@ class ButtonWidget extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(AppDimension.borderRadius),
             ),
-            backgroundColor: backgroundColor ?? AppColors.primary,
+            backgroundColor: backgroundColor ?? context.colors.primary,
             // shadowColor: Colors.transparent,
           ),
           onPressed: onPressed,

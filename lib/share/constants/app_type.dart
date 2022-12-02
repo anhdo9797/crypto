@@ -5,14 +5,7 @@ enum ThemeMode {
 
 enum AuthStatus { loggedIn, notLoggedIn }
 
-enum ButtonType {
-  primary,
-  secondary,
-  ghost,
-  link,
-  round,
-  outline,
-}
+enum ButtonType { primary, secondary, ghost, link, round, outline, icon }
 
 enum LinearType { container, primary }
 

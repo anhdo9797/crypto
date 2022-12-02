@@ -6,3 +6,4 @@ export "market_filter_model.dart";
 export "coin_trending_model.dart";
 export 'market_chart_model.dart';
 export "coin_detail_model.dart";
+export "credit_cart_model.dart";

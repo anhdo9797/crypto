@@ -189,8 +189,8 @@ class CardUtils {
     if (img.isNotEmpty) {
       widget = Image.asset(
         'assets/images/png/$img',
-        // width: 80.0,
-        height: 40.0,
+        fit: BoxFit.fill,
+        height: 20,
       );
     } else {
       widget = icon;

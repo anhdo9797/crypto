@@ -27,7 +27,6 @@ dependencies:
   # config
   flutter_launcher_icons: "^0.10.0"
   flutter_native_splash: ^2.2.11
-  google_fonts: ^3.0.1
   get_it: ^7.2.0 # for injection
   flutter_dotenv: ^5.0.2
 
@@ -42,6 +41,7 @@ dependencies:
   smooth_page_indicator: ^1.0.0+2
 
   webview_flutter: ^3.0.4
+  carousel_slider: ^4.1.1
 
   # chart
   candlesticks:
@@ -77,6 +77,11 @@ flutter:
     - family: CreditCard
       fonts:
         - asset: assets/font/CREDC.ttf
+    - family: Montserrat
+      fonts:
+        - asset: assets/font/Montserrat-Regular.ttf
+        - asset: assets/font/Montserrat-SemiBold.ttf
+          weight: 500
 
   assets:
     - assets/images/svg/

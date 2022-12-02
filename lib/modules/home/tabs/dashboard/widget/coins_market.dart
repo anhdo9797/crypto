@@ -3,7 +3,7 @@ import 'package:flutter_boiler/data/models/coin_market_model.dart';
 import 'package:flutter_boiler/modules/home/tabs/dashboard/widget/img_line_chart.dart';
 import 'package:flutter_boiler/routes/routes.dart';
 import 'package:flutter_boiler/share/constants/colors.dart';
-import 'package:flutter_boiler/share/constants/dimension.dart';
+
 import 'package:flutter_boiler/share/utils/utils.dart';
 import 'package:flutter_boiler/share/widgets/widgets.dart';
 
@@ -34,8 +34,6 @@ class CoinsMarket extends StatelessWidget {
         '/home/coins/${coin.id}?img=${coin.image}',
       ),
       child: Card(
-        // semanticContainer: false,
-        // surfaceTintColor: Colors.red,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(

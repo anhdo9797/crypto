@@ -62,7 +62,7 @@ class DashboardView extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("For you"),
+                const Text("For you"),
                 DropDownWidget<MarketFilterModel>(
                   onChanged: viewModel.onFilter,
                   value: viewModel.filterMarket.firstWhere(
@@ -129,7 +129,10 @@ class DashboardView extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text("My wallet"),
+            Text(
+              "My wallet",
+              style: context.labelLarge!.copyWith(color: textDefault),
+            ),
             DropDownWidget(
               onChanged: (String? value) {
                 // This is called when the user selects an item.
@@ -151,10 +154,7 @@ class DashboardView extends StatelessWidget {
             stream: UserManager.user.stream,
             builder: ((context, snapshot) => Text(
                   formatCurrency(snapshot.data?.balance),
-                  style: const TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: context.titleLarge!.copyWith(color: textDefault),
                 )),
           ),
         ),
@@ -162,7 +162,7 @@ class DashboardView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             _buildButton(
-              color: context.colors.tertiary,
+              color: context.colors.onSecondary,
               label: "Transfer",
               icon: Icons.transform_rounded,
             ),
@@ -197,9 +197,13 @@ class DashboardView extends StatelessWidget {
                 Icon(
                   icon,
                   size: 14,
+                  color: textDefault,
                 ),
                 const Space(width: 8),
-                Text(label),
+                Text(
+                  label,
+                  style: const TextStyle(color: textDefault),
+                ),
               ],
             ),
           ),

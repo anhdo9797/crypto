@@ -4,9 +4,8 @@ import 'package:flutter_boiler/modules/home/tabs/dashboard/dashboard_view.dart';
 import 'package:flutter_boiler/modules/home/tabs/setting/setting.dart';
 import 'package:flutter_boiler/modules/home/tabs/wallet/wallet.dart';
 import 'package:flutter_boiler/share/constants/assets.dart';
-
 import 'package:flutter_boiler/share/widgets/widgets.dart';
-import '../../share/utils/utils.dart';
+import 'package:flutter_boiler/share/utils/utils.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -37,8 +36,6 @@ class _HomeViewState extends State<HomeView>
   Widget build(BuildContext context) {
     super.build(context);
 
-    final colorScheme = Theme.of(context).colorScheme;
-
     List<Widget> tabs = const [
       DashboardView(),
       WalletView(),
@@ -51,7 +48,7 @@ class _HomeViewState extends State<HomeView>
         children: tabs,
       ),
       bottomNavigationBar: ConvexAppBar(
-        initialActiveIndex: 1,
+        initialActiveIndex: 0,
         style: TabStyle.react,
         backgroundColor: context.colors.surface,
         onTap: (value) => setState(() => tabIndex = value),
