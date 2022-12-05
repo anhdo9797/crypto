@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler/share/utils/size_config.dart';
+import 'package:s_crypto/share/utils/size_config.dart';
 
 extension TypographyUtils on BuildContext {
   ThemeData get theme => Theme.of(this);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler/share/constants/assets.dart';
-import 'package:flutter_boiler/share/widgets/widgets.dart';
-import 'package:flutter_boiler/share/utils/utils.dart';
+import 'package:s_crypto/share/constants/assets.dart';
+import 'package:s_crypto/share/widgets/widgets.dart';
+import 'package:s_crypto/share/utils/utils.dart';
 import 'package:flutter_svg/svg.dart';
 
 class AppLogo extends StatelessWidget {

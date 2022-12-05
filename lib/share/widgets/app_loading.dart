@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler/share/widgets/widgets.dart';
+import 'package:s_crypto/share/widgets/widgets.dart';
 
 class AppLoading extends StatefulWidget {
   const AppLoading({Key? key}) : super(key: key);

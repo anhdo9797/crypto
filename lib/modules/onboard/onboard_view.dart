@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler/data/local/pref.dart';
-import 'package:flutter_boiler/routes/routes.dart';
-import 'package:flutter_boiler/share/constants/app_type.dart';
-import 'package:flutter_boiler/share/constants/assets.dart';
-import 'package:flutter_boiler/share/utils/size_config.dart';
-import 'package:flutter_boiler/share/widgets/widgets.dart';
+import 'package:s_crypto/data/local/pref.dart';
+import 'package:s_crypto/routes/routes.dart';
+import 'package:s_crypto/share/constants/app_type.dart';
+import 'package:s_crypto/share/constants/assets.dart';
+import 'package:s_crypto/share/utils/size_config.dart';
+import 'package:s_crypto/share/widgets/widgets.dart';
 
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 

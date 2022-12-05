@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler/modules/auth/register/register.dart';
-import 'package:flutter_boiler/modules/base/base.dart';
-import 'package:flutter_boiler/share/constants/app_type.dart';
-import 'package:flutter_boiler/share/utils/app_localizations.dart';
-import 'package:flutter_boiler/share/utils/size_config.dart';
-import 'package:flutter_boiler/share/utils/utils.dart';
-import 'package:flutter_boiler/share/widgets/widgets.dart';
+import 'package:s_crypto/modules/auth/register/register.dart';
+import 'package:s_crypto/modules/base/base.dart';
+import 'package:s_crypto/share/constants/app_type.dart';
+import 'package:s_crypto/share/utils/app_localizations.dart';
+import 'package:s_crypto/share/utils/size_config.dart';
+import 'package:s_crypto/share/utils/utils.dart';
+import 'package:s_crypto/share/widgets/widgets.dart';
 import 'package:go_router/go_router.dart';
 
 class RegisterView extends StatelessWidget {

@@ -2,11 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/services.dart';
-import 'package:flutter_boiler/data/models/models.dart';
-import 'package:flutter_boiler/data/repositories/coin_repository.dart';
-import 'package:flutter_boiler/di/service_locator.dart';
-import 'package:flutter_boiler/modules/base/base.dart';
-import 'package:flutter_boiler/share/services/user_manager.dart';
+import 'package:s_crypto/data/models/models.dart';
+import 'package:s_crypto/data/repositories/coin_repository.dart';
+import 'package:s_crypto/di/service_locator.dart';
+import 'package:s_crypto/modules/base/base.dart';
+import 'package:s_crypto/share/services/user_manager.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 final userMock = UserModel(

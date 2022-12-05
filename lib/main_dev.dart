@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler/app/app.dart';
-import 'package:flutter_boiler/app/app_config.dart';
-import 'package:flutter_boiler/data/local/pref.dart';
-import 'package:flutter_boiler/di/service_locator.dart';
+import 'package:s_crypto/app/app.dart';
+import 'package:s_crypto/app/app_config.dart';
+import 'package:s_crypto/data/local/pref.dart';
+import 'package:s_crypto/di/service_locator.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:secure_app_switcher/secure_app_switcher.dart';

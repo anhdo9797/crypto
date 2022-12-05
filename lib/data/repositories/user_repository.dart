@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_boiler/data/api/api.dart';
-import 'package:flutter_boiler/data/models/models.dart';
+import 'package:s_crypto/data/api/api.dart';
+import 'package:s_crypto/data/models/models.dart';
 
 import '../../di/dio_exceptions.dart';
 

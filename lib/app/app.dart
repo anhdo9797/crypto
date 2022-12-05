@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler/app/app_config.dart';
-import 'package:flutter_boiler/providers/provider.dart';
-import 'package:flutter_boiler/routes/routes.dart';
-import 'package:flutter_boiler/share/constants/app_language.dart';
-import 'package:flutter_boiler/share/utils/app_localizations.dart';
+import 'package:s_crypto/app/app_config.dart';
+import 'package:s_crypto/providers/provider.dart';
+import 'package:s_crypto/routes/routes.dart';
+import 'package:s_crypto/share/constants/app_language.dart';
+import 'package:s_crypto/share/utils/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 

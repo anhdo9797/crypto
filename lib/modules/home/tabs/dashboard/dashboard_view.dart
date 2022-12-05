@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_boiler/data/models/coin_market_model.dart';
-import 'package:flutter_boiler/data/models/market_filter_model.dart';
-import 'package:flutter_boiler/data/models/user.dart';
-import 'package:flutter_boiler/modules/base/base.dart';
-import 'package:flutter_boiler/modules/home/tabs/dashboard/dashboard_view_model.dart';
-import 'package:flutter_boiler/modules/home/tabs/dashboard/widget/coin_trendy.dart';
-import 'package:flutter_boiler/modules/home/tabs/dashboard/widget/coins_market.dart';
-import 'package:flutter_boiler/modules/home/tabs/dashboard/widget/coins_recommended.dart';
-import 'package:flutter_boiler/share/constants/constants.dart';
-import 'package:flutter_boiler/share/services/user_manager.dart';
+import 'package:s_crypto/data/models/coin_market_model.dart';
+import 'package:s_crypto/data/models/market_filter_model.dart';
+import 'package:s_crypto/data/models/user.dart';
+import 'package:s_crypto/modules/base/base.dart';
+import 'package:s_crypto/modules/home/tabs/dashboard/dashboard_view_model.dart';
+import 'package:s_crypto/modules/home/tabs/dashboard/widget/coin_trendy.dart';
+import 'package:s_crypto/modules/home/tabs/dashboard/widget/coins_market.dart';
+import 'package:s_crypto/modules/home/tabs/dashboard/widget/coins_recommended.dart';
+import 'package:s_crypto/share/constants/constants.dart';
+import 'package:s_crypto/share/services/user_manager.dart';
 
-import 'package:flutter_boiler/share/utils/utils.dart';
-import 'package:flutter_boiler/share/widgets/widgets.dart';
+import 'package:s_crypto/share/utils/utils.dart';
+import 'package:s_crypto/share/widgets/widgets.dart';
 import 'package:skeletons/skeletons.dart';
 
 class DashboardView extends StatelessWidget {

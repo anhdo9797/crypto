@@ -1,11 +1,11 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler/data/local/pref.dart';
-import 'package:flutter_boiler/data/models/models.dart';
-import 'package:flutter_boiler/routes/routes.dart';
-import 'package:flutter_boiler/share/constants/app_type.dart';
-import 'package:flutter_boiler/share/services/user_manager.dart';
+import 'package:s_crypto/data/local/pref.dart';
+import 'package:s_crypto/data/models/models.dart';
+import 'package:s_crypto/routes/routes.dart';
+import 'package:s_crypto/share/constants/app_type.dart';
+import 'package:s_crypto/share/services/user_manager.dart';
 
 import '../data/repositories/user_repository.dart';
 import '../di/service_locator.dart';

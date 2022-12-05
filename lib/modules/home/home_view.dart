@@ -1,11 +1,11 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler/modules/home/tabs/dashboard/dashboard_view.dart';
-import 'package:flutter_boiler/modules/home/tabs/setting/setting.dart';
-import 'package:flutter_boiler/modules/home/tabs/wallet/wallet.dart';
-import 'package:flutter_boiler/share/constants/assets.dart';
-import 'package:flutter_boiler/share/widgets/widgets.dart';
-import 'package:flutter_boiler/share/utils/utils.dart';
+import 'package:s_crypto/modules/home/tabs/dashboard/dashboard_view.dart';
+import 'package:s_crypto/modules/home/tabs/setting/setting.dart';
+import 'package:s_crypto/modules/home/tabs/wallet/wallet.dart';
+import 'package:s_crypto/share/constants/assets.dart';
+import 'package:s_crypto/share/widgets/widgets.dart';
+import 'package:s_crypto/share/utils/utils.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);

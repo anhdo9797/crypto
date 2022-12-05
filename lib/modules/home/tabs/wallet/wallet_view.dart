@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_boiler/modules/base/base.dart';
-import 'package:flutter_boiler/modules/home/tabs/wallet/widget/wallet_header_widget.dart';
-import 'package:flutter_boiler/share/constants/constants.dart';
+import 'package:s_crypto/modules/base/base.dart';
+import 'package:s_crypto/modules/home/tabs/wallet/widget/wallet_header_widget.dart';
+import 'package:s_crypto/share/constants/constants.dart';
 
-import 'package:flutter_boiler/share/widgets/widgets.dart';
-import 'package:flutter_boiler/share/utils/utils.dart';
+import 'package:s_crypto/share/widgets/widgets.dart';
+import 'package:s_crypto/share/utils/utils.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import './wallet.dart';
 

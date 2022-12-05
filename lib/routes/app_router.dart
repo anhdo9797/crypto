@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler/modules/add_wallet/add_wallet.dart';
-import 'package:flutter_boiler/modules/auth/auth_module.dart';
-import 'package:flutter_boiler/modules/auth/forgot-password/forgot_password.dart';
-import 'package:flutter_boiler/modules/coin_detail/coin_detail.dart';
-import 'package:flutter_boiler/modules/home/home_view.dart';
-import 'package:flutter_boiler/modules/onboard/onboard_view.dart';
-import 'package:flutter_boiler/modules/splash/splash_view.dart';
-import 'package:flutter_boiler/routes/routes.dart';
+import 'package:s_crypto/modules/add_wallet/add_wallet.dart';
+import 'package:s_crypto/modules/auth/auth_module.dart';
+import 'package:s_crypto/modules/auth/forgot-password/forgot_password.dart';
+import 'package:s_crypto/modules/coin_detail/coin_detail.dart';
+import 'package:s_crypto/modules/home/home_view.dart';
+import 'package:s_crypto/modules/onboard/onboard_view.dart';
+import 'package:s_crypto/modules/splash/splash_view.dart';
+import 'package:s_crypto/routes/routes.dart';
 import 'package:go_router/go_router.dart';
 import 'package:secure_app_switcher/secure_app_switcher.dart';
 

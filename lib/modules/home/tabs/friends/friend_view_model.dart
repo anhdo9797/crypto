@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:flutter_boiler/data/models/user.dart';
-import 'package:flutter_boiler/data/repositories/repositories.dart';
-import 'package:flutter_boiler/di/service_locator.dart';
-import 'package:flutter_boiler/modules/base/base.dart';
+import 'package:s_crypto/data/models/user.dart';
+import 'package:s_crypto/data/repositories/repositories.dart';
+import 'package:s_crypto/di/service_locator.dart';
+import 'package:s_crypto/modules/base/base.dart';
 
 class FriendsViewModel extends BaseViewModel {
   final userRepository = getIt.get<UserRepository>();

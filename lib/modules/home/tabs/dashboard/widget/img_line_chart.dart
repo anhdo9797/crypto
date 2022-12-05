@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler/data/models/coin_market_model.dart';
-import 'package:flutter_boiler/share/utils/utils.dart';
+import 'package:s_crypto/data/models/coin_market_model.dart';
+import 'package:s_crypto/share/utils/utils.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class ChartImg extends StatelessWidget {

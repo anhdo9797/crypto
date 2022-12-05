@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter_boiler/data/models/user.dart';
+import 'package:s_crypto/data/models/user.dart';
 import 'package:rxdart/subjects.dart';
 
 class UserManager {

@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:flutter_boiler/data/models/models.dart';
-import 'package:flutter_boiler/modules/base/base.dart';
-import 'package:flutter_boiler/routes/routes.dart';
+import 'package:s_crypto/data/models/models.dart';
+import 'package:s_crypto/modules/base/base.dart';
+import 'package:s_crypto/routes/routes.dart';
 
 class WalletViewModel extends BaseViewModel {
   List<CreditCardModel> creditCards = [

@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler/share/utils/app_localizations.dart';
+import 'package:s_crypto/share/utils/app_localizations.dart';
 
 abstract class BaseViewModel with ChangeNotifier {
   bool _isLoading = false;

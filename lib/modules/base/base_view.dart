@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler/share/widgets/app_loading.dart';
+import 'package:s_crypto/share/widgets/app_loading.dart';
 import 'package:provider/provider.dart';
 
 import 'base.dart';

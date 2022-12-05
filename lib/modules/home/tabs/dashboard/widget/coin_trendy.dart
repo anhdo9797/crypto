@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler/data/models/coin_market_model.dart';
-import 'package:flutter_boiler/modules/home/tabs/dashboard/widget/img_line_chart.dart';
+import 'package:s_crypto/data/models/coin_market_model.dart';
+import 'package:s_crypto/modules/home/tabs/dashboard/widget/img_line_chart.dart';
 
-import 'package:flutter_boiler/share/constants/constants.dart';
-import 'package:flutter_boiler/share/utils/utils.dart';
-import 'package:flutter_boiler/share/widgets/widgets.dart';
+import 'package:s_crypto/share/constants/constants.dart';
+import 'package:s_crypto/share/utils/utils.dart';
+import 'package:s_crypto/share/widgets/widgets.dart';
 
 class CoinTrendy extends StatelessWidget {
   const CoinTrendy({Key? key, required this.coin}) : super(key: key);

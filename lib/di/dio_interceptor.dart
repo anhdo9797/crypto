@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_boiler/data/local/pref.dart';
+import 'package:s_crypto/data/local/pref.dart';
 
 class DioInterceptor extends Interceptor {
   @override

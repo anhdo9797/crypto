@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:core';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler/modules/base/base.dart';
-import 'package:flutter_boiler/share/utils/format.dart';
+import 'package:s_crypto/modules/base/base.dart';
+import 'package:s_crypto/share/utils/format.dart';
 
 class AddWalletViewModel extends BaseViewModel {
   TextEditingController cardIdController = TextEditingController();

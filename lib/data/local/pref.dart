@@ -1,4 +1,4 @@
-import 'package:flutter_boiler/data/local/local.dart';
+import 'package:s_crypto/data/local/local.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppPref {

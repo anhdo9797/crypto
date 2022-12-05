@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_boiler/data/local/pref.dart';
-import 'package:flutter_boiler/share/constants/app_theme.dart';
+import 'package:s_crypto/data/local/pref.dart';
+import 'package:s_crypto/share/constants/app_theme.dart';
 
 class ThemeProvider with ChangeNotifier {
   ThemeMode _themeMode = ThemeMode.light;

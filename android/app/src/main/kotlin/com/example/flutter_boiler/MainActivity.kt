@@ -1,4 +1,4 @@
-package com.example.flutter_boiler
+package com.example.s_crypto
 
 import io.flutter.embedding.android.FlutterActivity
 

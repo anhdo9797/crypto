@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler/modules/auth/forgot-password/forgot_password_view_model.dart';
-import 'package:flutter_boiler/modules/base/base.dart';
-import 'package:flutter_boiler/share/utils/app_localizations.dart';
-import 'package:flutter_boiler/share/utils/utils.dart';
-import 'package:flutter_boiler/share/widgets/button.dart';
-import 'package:flutter_boiler/share/widgets/container.dart';
-import 'package:flutter_boiler/share/widgets/space.dart';
-import 'package:flutter_boiler/share/widgets/text_field.dart';
+import 'package:s_crypto/modules/auth/forgot-password/forgot_password_view_model.dart';
+import 'package:s_crypto/modules/base/base.dart';
+import 'package:s_crypto/share/utils/app_localizations.dart';
+import 'package:s_crypto/share/utils/utils.dart';
+import 'package:s_crypto/share/widgets/button.dart';
+import 'package:s_crypto/share/widgets/container.dart';
+import 'package:s_crypto/share/widgets/space.dart';
+import 'package:s_crypto/share/widgets/text_field.dart';
 
 class ForgotPasswordView extends StatelessWidget {
   const ForgotPasswordView({Key? key}) : super(key: key);

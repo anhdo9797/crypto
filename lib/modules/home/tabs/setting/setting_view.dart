@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler/data/models/language_model.dart';
-import 'package:flutter_boiler/data/models/user.dart';
-import 'package:flutter_boiler/modules/base/base.dart';
-import 'package:flutter_boiler/modules/home/tabs/setting/setting_view_model.dart';
-import 'package:flutter_boiler/providers/provider.dart';
-import 'package:flutter_boiler/share/constants/constants.dart';
-import 'package:flutter_boiler/share/services/user_manager.dart';
-import 'package:flutter_boiler/share/utils/app_localizations.dart';
-import 'package:flutter_boiler/share/utils/size_config.dart';
-import 'package:flutter_boiler/share/widgets/widgets.dart';
+import 'package:s_crypto/data/models/language_model.dart';
+import 'package:s_crypto/data/models/user.dart';
+import 'package:s_crypto/modules/base/base.dart';
+import 'package:s_crypto/modules/home/tabs/setting/setting_view_model.dart';
+import 'package:s_crypto/providers/provider.dart';
+import 'package:s_crypto/share/constants/constants.dart';
+import 'package:s_crypto/share/services/user_manager.dart';
+import 'package:s_crypto/share/utils/app_localizations.dart';
+import 'package:s_crypto/share/utils/size_config.dart';
+import 'package:s_crypto/share/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
 class SettingView extends StatelessWidget {

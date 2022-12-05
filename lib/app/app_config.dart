@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler/share/constants/value.dart';
+import 'package:s_crypto/share/constants/value.dart';
 
 enum Environment { dev, prod }
 

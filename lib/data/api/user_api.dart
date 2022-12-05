@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:dio/dio.dart';
-import 'package:flutter_boiler/data/api/constant.dart';
+import 'package:s_crypto/data/api/constant.dart';
 
 import '../../di/dio_client.dart';
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler/data/models/models.dart';
+import 'package:s_crypto/data/models/models.dart';
 
-import 'package:flutter_boiler/share/utils/utils.dart';
-import 'package:flutter_boiler/share/widgets/widgets.dart';
+import 'package:s_crypto/share/utils/utils.dart';
+import 'package:s_crypto/share/widgets/widgets.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class CoinsRecommended extends StatelessWidget {

@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_boiler/data/api/constant.dart';
+import 'package:s_crypto/data/api/constant.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'dio_interceptor.dart';

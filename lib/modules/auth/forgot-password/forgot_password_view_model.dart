@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_boiler/modules/base/base.dart';
+import 'package:s_crypto/modules/base/base.dart';
 
 class ForgotPasswordViewModel extends BaseViewModel {
   TextEditingController emailController = TextEditingController();

@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler/modules/base/base.dart';
-import 'package:flutter_boiler/providers/provider.dart';
-import 'package:flutter_boiler/share/utils/app_localizations.dart';
-import 'package:flutter_boiler/share/widgets/widgets.dart';
+import 'package:s_crypto/modules/base/base.dart';
+import 'package:s_crypto/providers/provider.dart';
+import 'package:s_crypto/share/utils/app_localizations.dart';
+import 'package:s_crypto/share/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
 class SettingViewModel extends BaseViewModel {

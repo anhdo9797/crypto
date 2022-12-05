@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler/data/local/pref.dart';
-import 'package:flutter_boiler/providers/auth_provider.dart';
-import 'package:flutter_boiler/routes/routes.dart';
-import 'package:flutter_boiler/share/constants/app_type.dart';
-import 'package:flutter_boiler/share/utils/size_config.dart';
-import 'package:flutter_boiler/share/widgets/app_logo.dart';
+import 'package:s_crypto/data/local/pref.dart';
+import 'package:s_crypto/providers/auth_provider.dart';
+import 'package:s_crypto/routes/routes.dart';
+import 'package:s_crypto/share/constants/app_type.dart';
+import 'package:s_crypto/share/utils/size_config.dart';
+import 'package:s_crypto/share/widgets/app_logo.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:go_router/go_router.dart';
 

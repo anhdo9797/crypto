@@ -2,14 +2,14 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler/data/local/pref.dart';
-import 'package:flutter_boiler/data/repositories/repositories.dart';
-import 'package:flutter_boiler/di/service_locator.dart';
+import 'package:s_crypto/data/local/pref.dart';
+import 'package:s_crypto/data/repositories/repositories.dart';
+import 'package:s_crypto/di/service_locator.dart';
 
-import 'package:flutter_boiler/modules/base/base_view_model.dart';
-import 'package:flutter_boiler/routes/routes.dart';
-import 'package:flutter_boiler/share/services/user_manager.dart';
-import 'package:flutter_boiler/share/utils/utils.dart';
+import 'package:s_crypto/modules/base/base_view_model.dart';
+import 'package:s_crypto/routes/routes.dart';
+import 'package:s_crypto/share/services/user_manager.dart';
+import 'package:s_crypto/share/utils/utils.dart';
 
 class LoginViewModel extends BaseViewModel {
   final BuildContext buildContext;

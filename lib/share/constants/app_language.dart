@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler/data/models/models.dart';
-import 'package:flutter_boiler/share/constants/assets.dart';
+import 'package:s_crypto/data/models/models.dart';
+import 'package:s_crypto/share/constants/assets.dart';
 
 class AppLanguage {
   AppLanguage._();

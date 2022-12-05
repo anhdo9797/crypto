@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler/share/constants/constants.dart';
-import 'package:flutter_boiler/share/utils/app_localizations.dart';
-import 'package:flutter_boiler/share/utils/size_config.dart';
+import 'package:s_crypto/share/constants/constants.dart';
+import 'package:s_crypto/share/utils/app_localizations.dart';
+import 'package:s_crypto/share/utils/size_config.dart';
 
 enum DialogType {
   warning,

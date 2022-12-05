@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_boiler/modules/base/base.dart';
-import 'package:flutter_boiler/modules/home/tabs/friends/friend_view_model.dart';
-import 'package:flutter_boiler/share/constants/dimension.dart';
-import 'package:flutter_boiler/share/utils/size_config.dart';
+import 'package:s_crypto/modules/base/base.dart';
+import 'package:s_crypto/modules/home/tabs/friends/friend_view_model.dart';
+import 'package:s_crypto/share/constants/dimension.dart';
+import 'package:s_crypto/share/utils/size_config.dart';
 
-import 'package:flutter_boiler/share/widgets/widgets.dart';
+import 'package:s_crypto/share/widgets/widgets.dart';
 import 'package:skeletons/skeletons.dart';
 
 class FriendsView extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_boiler/share/constants/constants.dart';
+import 'package:s_crypto/share/constants/constants.dart';
 import 'package:intl/intl.dart';
 
 /// coin handler
