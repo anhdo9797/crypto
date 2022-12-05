@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_boiler/share/constants/colors.dart';
+import 'package:flutter_boiler/share/constants/constants.dart';
 import 'package:intl/intl.dart';
 
 /// coin handler
@@ -14,9 +14,9 @@ String fixedNumber(num? value, {fractionDigits = 2}) {
 
 Color getColorPercentage(num? value) {
   if (value == null) return Colors.white;
-  if (value > 0) return AppColors.success;
+  if (value > 0) return successColor;
 
-  return AppColors.error;
+  return errorColor;
 }
 
 String formatCurrency(num? value) {

@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 
 const Color textDefault = Color(0xFFFFFFFF);
+const blueColor = Color.fromARGB(255, 18, 85, 219);
+const errorColor = Color(0xffDB504A);
+const successColor = Colors.green;
+
 const lightColorScheme = ColorScheme(
   brightness: Brightness.light,
-  primary: Color(0xFF512DA8),
+  primary: Color(0xff254441),
   onPrimary: Color(0xFFD1C4E9),
-  secondary: Color(0xFF7C4DFF),
+  secondary: Color(0xFFFF6F00),
   onSecondary: Color(0xFFcdbfed),
   secondaryContainer: Color(0xFF4A4458),
   onSecondaryContainer: Color(0xFFE8DEF8),
@@ -29,9 +33,9 @@ const lightColorScheme = ColorScheme(
 
 const darkColorScheme = ColorScheme(
   brightness: Brightness.dark,
-  primary: Color(0xFF512DA8),
-  onPrimary: Color(0xFFD1C4E9),
-  secondary: Color(0xFF7C4DFF),
+  primary: Color(0xff335d59),
+  onPrimary: Color(0xFF9ecac6),
+  secondary: Color(0xFFFF6F00),
   onSecondary: Color(0xFF332D41),
   secondaryContainer: Color(0xFF4A4458),
   onSecondaryContainer: Color(0xFFE8DEF8),
@@ -46,9 +50,9 @@ const darkColorScheme = ColorScheme(
   inversePrimary: Color(0xFF6750A4),
   shadow: Color(0xFF000000),
   surfaceTint: Color(0xFFD0BCFF),
-  background: Color(0xFF1C1B1F),
+  background: Color(0xFF03120E),
   onBackground: Color(0xFFE6E1E5),
-  surface: Color(0xFF232227),
+  surface: Color(0xFF1A1D1A),
   onSurface: Color(0xFF757575),
   surfaceVariant: Color(0xFF49454F),
 );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boiler/app/app.dart';
 import 'package:flutter_boiler/share/constants/app_type.dart';
-import 'package:flutter_boiler/share/constants/colors.dart';
+import 'package:flutter_boiler/share/constants/color_schemes.dart';
 
 class AppFeedback {
   AppFeedback._();
@@ -11,9 +11,9 @@ class AppFeedback {
   static showSnackbar(String msg, {SnackbarType type = SnackbarType.error}) {
     Widget content = const SizedBox();
     Color? bgColors = type == SnackbarType.error
-        ? AppColors.error
+        ? errorColor
         : type == SnackbarType.success
-            ? AppColors.success
+            ? successColor
             : null;
 
     if (type == SnackbarType.success) {

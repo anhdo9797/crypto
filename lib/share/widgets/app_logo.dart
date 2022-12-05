@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boiler/share/constants/assets.dart';
-import 'package:flutter_boiler/share/constants/colors.dart';
 import 'package:flutter_boiler/share/widgets/widgets.dart';
+import 'package:flutter_boiler/share/utils/utils.dart';
 import 'package:flutter_svg/svg.dart';
 
 class AppLogo extends StatelessWidget {
@@ -17,7 +16,7 @@ class AppLogo extends StatelessWidget {
       fit: BoxFit.cover,
       width: size,
       height: size,
-      color: AppColors.primary,
+      color: context.colors.primary,
     );
   }
 }

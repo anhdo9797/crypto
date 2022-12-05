@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler/share/constants/colors.dart';
+import 'package:flutter_boiler/share/constants/constants.dart';
 import 'package:flutter_boiler/share/utils/app_localizations.dart';
 import 'package:flutter_boiler/share/utils/size_config.dart';
 
@@ -97,7 +97,7 @@ class DialogWidget extends StatelessWidget {
               child: Text(
                 "Ok",
                 style: TextStyle(
-                  color: AppColors.lightText,
+                  color: textDefault,
                 ),
               ),
             ),

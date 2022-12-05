@@ -30,4 +30,6 @@ class Assets {
   static const chip = 'assets/images/svg/chip.svg';
   static const visa = 'assets/images/png/visa.png';
   static const cardBg = "assets/images/png/credit-card.png";
+  static const cardBg2 = "assets/images/png/credit-card-2.png";
+  static const cardBg3 = "assets/images/png/credit-card-3.png";
 }

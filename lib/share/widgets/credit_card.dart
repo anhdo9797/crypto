@@ -5,6 +5,12 @@ import 'package:flutter_boiler/share/widgets/widgets.dart';
 import '../constants/assets.dart';
 import '../utils/utils.dart';
 
+final creditCardBgs = [
+  Assets.cardBg,
+  Assets.cardBg2,
+  Assets.cardBg3,
+];
+
 class CreditCard extends StatelessWidget {
   const CreditCard({
     Key? key,
@@ -28,6 +34,8 @@ class CreditCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String bg = creditCardBgs[Random().nextInt(3)];
+
     return TweenAnimationBuilder(
         tween: Tween<double>(begin: isFront ? 180 : 0, end: !isFront ? 180 : 0),
         duration: duration,
@@ -37,19 +45,19 @@ class CreditCard extends StatelessWidget {
             transform: Matrix4.identity()
               ..setEntry(3, 2, 0.001)
               ..rotateY(-deg / 180 * pi),
-            child: _buildBody(context, deg),
+            child: _buildBody(context, deg, bg),
           );
         });
   }
 
-  Widget _buildBody(BuildContext context, double deg) {
+  Widget _buildBody(BuildContext context, double deg, String bg) {
     return Container(
       width: context.sizeConfig.screenWidth,
       height: (context.sizeConfig.screenWidth) / 1.6,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(16)),
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(Radius.circular(16)),
         image: DecorationImage(
-          image: AssetImage(Assets.cardBg),
+          image: AssetImage(bg),
           fit: BoxFit.cover,
         ),
       ),

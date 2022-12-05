@@ -13,7 +13,7 @@ class ButtonWidget extends StatelessWidget {
     this.child,
     this.icon,
     this.colors,
-    this.labelStyle = const TextStyle(color: AppColors.lightText),
+    this.labelStyle = const TextStyle(color: textDefault),
     this.backgroundColor,
     this.padding = 16.0,
   }) : super(key: key);
@@ -54,7 +54,7 @@ class ButtonWidget extends StatelessWidget {
             child: Text(
               label ?? "",
               style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                    color: AppColors.blue,
+                    color: blueColor,
                     fontStyle: FontStyle.italic,
                     decoration: TextDecoration.underline,
                   ),

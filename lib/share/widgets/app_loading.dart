@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler/share/constants/colors.dart';
 import 'package:flutter_boiler/share/widgets/widgets.dart';
 
 class AppLoading extends StatefulWidget {

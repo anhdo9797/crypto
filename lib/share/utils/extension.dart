@@ -28,6 +28,7 @@ extension TypographyUtils on BuildContext {
   TextStyle? get labelMedium => textTheme.labelMedium?.copyWith(
         color: colors.onSurface,
         fontSize: 16,
+        fontWeight: FontWeight.bold,
       );
 
   TextStyle? get bodyLarge => textTheme.bodyLarge?.copyWith(
@@ -38,6 +39,7 @@ extension TypographyUtils on BuildContext {
       );
   TextStyle? get bodySmall => textTheme.bodySmall?.copyWith(
         color: colors.onSurface,
+        fontSize: 12,
       );
 
   SizeConfig get sizeConfig => SizeConfig();
