@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_boiler/share/constants/constants.dart';
 
 class AppThemeData {
@@ -9,8 +8,11 @@ class AppThemeData {
 
   static CardTheme cardTheme(ColorScheme colors) {
     return CardTheme(
-      elevation: 2,
       shape: shapeMedium,
+      color: colors.surface,
+      surfaceTintColor: colors.surface,
+      elevation: 3,
+      shadowColor: colors.shadow,
     );
   }
 
@@ -87,6 +89,7 @@ class AppThemeData {
       tabBarTheme: tabBarTheme(colorScheme),
       drawerTheme: drawerTheme(colorScheme),
       scaffoldBackgroundColor: colorScheme.background,
+      brightness: colorScheme.brightness,
       useMaterial3: true,
       fontFamily: "Montserrat",
     );

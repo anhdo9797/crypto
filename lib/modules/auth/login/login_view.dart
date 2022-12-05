@@ -165,12 +165,12 @@ class LoginView extends StatelessWidget {
               type: ButtonType.secondary,
               icon: const Icon(
                 Icons.facebook,
-                color: AppColors.lightText,
+                color: textDefault,
               ),
               colors: [
-                AppColors.blue,
-                AppColors.blue.withOpacity(0.7),
-                AppColors.blue.withOpacity(0.7),
+                blueColor,
+                blueColor.withOpacity(0.7),
+                blueColor.withOpacity(0.7),
               ],
             )),
           ],

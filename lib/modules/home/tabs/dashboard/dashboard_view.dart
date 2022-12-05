@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_boiler/data/models/coin_market_model.dart';
 import 'package:flutter_boiler/data/models/market_filter_model.dart';
 import 'package:flutter_boiler/data/models/user.dart';
@@ -24,8 +25,8 @@ class DashboardView extends StatelessWidget {
 
   Widget _builder(BuildContext context, DashboardViewModel viewModel) {
     return Scaffold(
-      body: SafeArea(
-        minimum: const EdgeInsets.symmetric(horizontal: AppDimension.padding),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: AppDimension.padding),
         child: viewModel.isInitialized
             ? SkeletonListView()
             : _buildBody(context, viewModel),
@@ -35,12 +36,12 @@ class DashboardView extends StatelessWidget {
 
   _buildBody(BuildContext context, DashboardViewModel viewModel) {
     final coin = viewModel.coins.isEmpty ? CoinMarket() : viewModel.coins[0];
-    // const symbol = "﹩" | "€";
 
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(height: context.sizeConfig.top + 16),
           _buildAppBar(context),
           _buildWallet(context, viewModel),
           const Space(),
@@ -85,8 +86,7 @@ class DashboardView extends StatelessWidget {
     );
   }
 
-  _buildAppBar(context) {
-    final colorScheme = Theme.of(context).colorScheme;
+  _buildAppBar(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16),
       child: Row(
@@ -102,7 +102,7 @@ class DashboardView extends StatelessWidget {
               GestureDetector(
                 child: Container(
                   decoration: BoxDecoration(
-                    color: colorScheme.surface,
+                    color: context.colors.surface,
                     borderRadius: BorderRadius.circular(16),
                   ),
                   padding: const EdgeInsets.all(16),
@@ -117,12 +117,10 @@ class DashboardView extends StatelessWidget {
   }
 
   _buildWallet(BuildContext context, DashboardViewModel viewModel) {
-    ColorScheme colorScheme = Theme.of(context).colorScheme;
-
     return Container(
       padding: const EdgeInsets.all(AppDimension.padding),
       decoration: BoxDecoration(
-        color: colorScheme.primary,
+        color: primary,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(mainAxisSize: MainAxisSize.min, children: [
@@ -162,19 +160,19 @@ class DashboardView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             _buildButton(
-              color: context.colors.onSecondary,
+              color: context.colors.onSurface.withOpacity(0.3),
               label: "Transfer",
               icon: Icons.transform_rounded,
             ),
             _buildButton(
-              color: colorScheme.onSurface.withOpacity(0.3),
+              color: context.colors.onSurface.withOpacity(0.3),
               label: "Deposit",
               icon: Icons.currency_exchange_rounded,
             ),
             _buildButton(
               label: "Swap",
               icon: Icons.swap_calls_outlined,
-              color: colorScheme.onSurface.withOpacity(0.3),
+              color: context.colors.onSurface.withOpacity(0.3),
             ),
           ],
         )

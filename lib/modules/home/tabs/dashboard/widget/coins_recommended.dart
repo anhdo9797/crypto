@@ -24,62 +24,64 @@ class CoinsRecommended extends StatelessWidget {
   _buildItem(BuildContext context, CoinTrending coin) {
     final colorScheme = Theme.of(context).colorScheme;
 
-    return Container(
-      width: SizeConfig().screenWidth * 0.5,
-      decoration: BoxDecoration(
-        color: colorScheme.surface,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      padding: const EdgeInsets.all(16),
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    ImageWidget(
-                      coin.large ?? "",
-                      width: 24,
-                      height: 24,
-                    ),
-                    const Space(width: 8),
-                    Text(
-                      "${coin.symbol}",
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  width: 40,
-                  height: 20,
-                  child: WebView(
-                    gestureNavigationEnabled: true,
-                    javascriptMode: JavascriptMode.unrestricted,
-                    initialUrl: getChartUrl(coin.thumb),
-                    backgroundColor: colorScheme.surface,
+    return Card(
+      child: Container(
+        width: SizeConfig().screenWidth * 0.5,
+        decoration: BoxDecoration(
+          // color: colorScheme.surface,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        padding: const EdgeInsets.all(16),
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      ImageWidget(
+                        coin.large ?? "",
+                        width: 24,
+                        height: 24,
+                      ),
+                      const Space(width: 8),
+                      Text(
+                        "${coin.symbol}",
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
                   ),
-                )
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "rank",
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(color: colorScheme.onSurface),
-                ),
-                Text(
-                  "${coin.marketCapRank}",
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
-            ),
-          ]),
+                  SizedBox(
+                    width: 40,
+                    height: 20,
+                    child: WebView(
+                      gestureNavigationEnabled: true,
+                      javascriptMode: JavascriptMode.unrestricted,
+                      initialUrl: getChartUrl(coin.thumb),
+                      backgroundColor: colorScheme.surface,
+                    ),
+                  )
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "rank",
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(color: colorScheme.onSurface),
+                  ),
+                  Text(
+                    "${coin.marketCapRank}",
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+            ]),
+      ),
     );
   }
 }

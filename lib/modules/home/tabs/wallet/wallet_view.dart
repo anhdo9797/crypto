@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_boiler/modules/base/base.dart';
 import 'package:flutter_boiler/modules/home/tabs/wallet/widget/wallet_header_widget.dart';
 import 'package:flutter_boiler/share/constants/constants.dart';
@@ -37,7 +38,7 @@ class WalletView extends StatelessWidget {
                     style: context.labelMedium,
                   ),
                   ButtonWidget(
-                    icon: const Icon(Icons.add),
+                    icon: const Icon(Icons.add, color: textDefault),
                     type: ButtonType.icon,
                     onPressed: vm.addCard,
                     label: '',
@@ -79,7 +80,10 @@ class WalletView extends StatelessWidget {
                     style: context.labelMedium,
                   ),
                   ButtonWidget(
-                    icon: const Icon(Icons.settings_brightness_outlined),
+                    icon: const Icon(
+                      Icons.settings_brightness_outlined,
+                      color: textDefault,
+                    ),
                     type: ButtonType.icon,
                     onPressed: vm.addCard,
                     label: '',

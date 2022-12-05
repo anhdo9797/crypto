@@ -23,7 +23,7 @@ class WalletHeaderWidget extends StatelessWidget {
             bottom: 16,
           ),
           decoration: BoxDecoration(
-            color: Color(0xff254441),
+            color: primary,
           ),
           width: context.sizeConfig.screenWidth,
           child: Column(
@@ -50,8 +50,6 @@ class WalletHeaderWidget extends StatelessWidget {
                   ],
                 ),
                 secondChild: Row(
-                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  // crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       "＄ ***",
@@ -90,10 +88,10 @@ class WalletHeaderWidget extends StatelessWidget {
               borderRadius: const BorderRadius.all(Radius.circular(32)),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 2,
-                  blurRadius: 3,
-                  offset: const Offset(0, 3), // changes position of shadow
+                  color: Colors.black.withOpacity(0.5),
+                  spreadRadius: 3,
+                  blurRadius: 4,
+                  offset: const Offset(1, 2), // changes position of shadow
                 ),
               ],
             ),
@@ -118,8 +116,8 @@ class WalletHeaderWidget extends StatelessWidget {
                       borderRadius: const BorderRadius.all(Radius.circular(32)),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 2,
+                          color: Colors.black.withOpacity(0.5),
+                          spreadRadius: 1,
                           blurRadius: 3,
                           offset: const Offset(0, 1),
                         ),

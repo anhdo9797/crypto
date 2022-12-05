@@ -4,10 +4,7 @@ import 'package:flutter_boiler/data/models/user.dart';
 import 'package:flutter_boiler/modules/base/base.dart';
 import 'package:flutter_boiler/modules/home/tabs/setting/setting_view_model.dart';
 import 'package:flutter_boiler/providers/provider.dart';
-import 'package:flutter_boiler/share/constants/app_language.dart';
-import 'package:flutter_boiler/share/constants/app_type.dart';
-import 'package:flutter_boiler/share/constants/colors.dart';
-import 'package:flutter_boiler/share/constants/dimension.dart';
+import 'package:flutter_boiler/share/constants/constants.dart';
 import 'package:flutter_boiler/share/services/user_manager.dart';
 import 'package:flutter_boiler/share/utils/app_localizations.dart';
 import 'package:flutter_boiler/share/utils/size_config.dart';
@@ -55,7 +52,7 @@ class SettingView extends StatelessWidget {
                                       onPressed: viewModel.logout,
                                       icon: const Icon(
                                         Icons.logout_rounded,
-                                        color: AppColors.lightText,
+                                        color: textDefault,
                                       ))
                                 ],
                               ),
@@ -142,14 +139,14 @@ class SettingView extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .headline4!
-                    .copyWith(color: AppColors.lightText),
+                    .copyWith(color: textDefault),
               ),
               Text(
                 "${user?.email}",
                 style: Theme.of(context)
                     .textTheme
                     .subtitle1!
-                    .copyWith(color: AppColors.lightText.withOpacity(0.8)),
+                    .copyWith(color: textDefault),
               )
             ],
           );

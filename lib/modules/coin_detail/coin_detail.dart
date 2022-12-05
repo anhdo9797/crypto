@@ -72,7 +72,7 @@ class CoinDetailView extends StatelessWidget {
                     child: ButtonWidget(
                       label: "Sell",
                       onPressed: () {},
-                      backgroundColor: context.colors.onSecondary,
+                      backgroundColor: context.colors.secondary,
                     ),
                   ),
                   const Space(),

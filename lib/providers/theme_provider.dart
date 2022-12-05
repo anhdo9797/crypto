@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_boiler/data/local/pref.dart';
 import 'package:flutter_boiler/share/constants/app_theme.dart';
 
@@ -33,6 +34,13 @@ class ThemeProvider with ChangeNotifier {
     } else {
       _themeMode = ThemeMode.light;
     }
+
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarBrightness: value ? Brightness.dark : Brightness.light,
+        statusBarColor: Colors.green,
+      ),
+    );
 
     notifyListeners();
   }

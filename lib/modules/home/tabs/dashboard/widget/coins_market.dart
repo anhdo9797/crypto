@@ -3,7 +3,6 @@ import 'package:flutter_boiler/data/models/coin_market_model.dart';
 import 'package:flutter_boiler/modules/home/tabs/dashboard/widget/img_line_chart.dart';
 import 'package:flutter_boiler/routes/routes.dart';
 import 'package:flutter_boiler/share/constants/colors.dart';
-
 import 'package:flutter_boiler/share/utils/utils.dart';
 import 'package:flutter_boiler/share/widgets/widgets.dart';
 
@@ -14,7 +13,7 @@ class CoinsMarket extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-        separatorBuilder: (context, index) => const Space(),
+        separatorBuilder: (context, index) => const Space(height: 4),
         itemCount: coins.length,
         shrinkWrap: true,
         cacheExtent: 10,
@@ -23,11 +22,9 @@ class CoinsMarket extends StatelessWidget {
   }
 
   _buildItem(BuildContext context, CoinMarket coin) {
-    final color = (coin.priceChangePercentage24h ?? 0) > 0
-        ? AppColors.success
-        : AppColors.error;
+    final color =
+        (coin.priceChangePercentage24h ?? 0) > 0 ? successColor : errorColor;
 
-    final ColorScheme colorScheme = Theme.of(context).colorScheme;
     return InkWell(
       mouseCursor: SystemMouseCursors.click,
       onTap: () => AppRouter.routes.go(
@@ -75,7 +72,7 @@ class CoinsMarket extends StatelessWidget {
                 Flexible(
                   child: Text(
                     fixedNumber(coin.priceChange24h, fractionDigits: 8),
-                    style: TextStyle(color: colorScheme.onSurface),
+                    style: TextStyle(color: context.colors.onSurface),
                     overflow: TextOverflow.ellipsis,
                   ),
                 )

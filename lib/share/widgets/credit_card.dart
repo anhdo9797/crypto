@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_boiler/share/constants/constants.dart';
 import 'package:flutter_boiler/share/widgets/widgets.dart';
 import '../constants/assets.dart';
 import '../utils/utils.dart';
@@ -89,7 +90,10 @@ class CreditCard extends StatelessWidget {
               Text(
                 bankName.toUpperCase(),
                 textAlign: TextAlign.right,
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: textDefault,
+                ),
               ),
             ],
           ),
@@ -102,14 +106,15 @@ class CreditCard extends StatelessWidget {
                 style: const TextStyle(
                   fontFamily: "CreditCard",
                   fontSize: 16,
+                  color: textDefault,
                 ),
               ),
-              Text(
+              const Text(
                 "4000",
                 style: TextStyle(
                   fontFamily: "CreditCard",
                   fontSize: 6,
-                  color: context.colors.onSurface,
+                  color: textDefault,
                 ),
               ),
               Row(
@@ -118,14 +123,19 @@ class CreditCard extends StatelessWidget {
                 children: [
                   Text(
                     "VALIDATE\nTHUR",
-                    style:
-                        context.textTheme.displaySmall!.copyWith(fontSize: 7),
+                    style: context.textTheme.displaySmall!.copyWith(
+                      fontSize: 7,
+                      color: textDefault,
+                    ),
                   ),
                   const Space(),
                   Text(
                     date,
-                    style: context.textTheme.labelMedium!
-                        .copyWith(fontFamily: "CreditCard", fontSize: 12),
+                    style: context.textTheme.labelMedium!.copyWith(
+                      fontFamily: "CreditCard",
+                      fontSize: 12,
+                      color: textDefault,
+                    ),
                   ),
                 ],
               ),
@@ -139,6 +149,7 @@ class CreditCard extends StatelessWidget {
                 style: const TextStyle(
                   fontFamily: "CreditCard",
                   fontSize: 18,
+                  color: textDefault,
                 ),
               ),
               Container(

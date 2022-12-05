@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boiler/app/app.dart';
 import 'package:flutter_boiler/share/constants/app_type.dart';
-import 'package:flutter_boiler/share/constants/color_schemes.dart';
+import 'package:flutter_boiler/share/constants/colors.dart';
 
 class AppFeedback {
   AppFeedback._();
