@@ -3,6 +3,7 @@ import 'package:s_crypto/modules/add_wallet/add_wallet.dart';
 import 'package:s_crypto/modules/auth/auth_module.dart';
 import 'package:s_crypto/modules/auth/forgot-password/forgot_password.dart';
 import 'package:s_crypto/modules/coin_detail/coin_detail.dart';
+import 'package:s_crypto/modules/feedback/feedback_view.dart';
 import 'package:s_crypto/modules/home/home_view.dart';
 import 'package:s_crypto/modules/onboard/onboard_view.dart';
 import 'package:s_crypto/modules/splash/splash_view.dart';
@@ -101,6 +102,12 @@ class AppRouter {
         name: APP_PAGE.addWallet.toName,
         pageBuilder: (context, state) =>
             _buildPageTransition(child: const AddWalletView()),
+      ),
+      GoRoute(
+        path: APP_PAGE.feedback.toPath,
+        name: APP_PAGE.feedback.toName,
+        pageBuilder: (context, state) =>
+            _buildPageTransition(child: const FeedbackView()),
       ),
     ],
   );

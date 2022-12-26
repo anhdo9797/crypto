@@ -4,6 +4,7 @@ import 'package:s_crypto/data/models/user.dart';
 import 'package:s_crypto/modules/base/base.dart';
 import 'package:s_crypto/modules/home/tabs/setting/setting_view_model.dart';
 import 'package:s_crypto/providers/provider.dart';
+import 'package:s_crypto/routes/routes.dart';
 import 'package:s_crypto/share/constants/constants.dart';
 import 'package:s_crypto/share/services/user_manager.dart';
 import 'package:s_crypto/share/utils/app_localizations.dart';
@@ -75,6 +76,15 @@ class SettingView extends StatelessWidget {
                       context,
                       label: t.translate("support"),
                       icon: Icons.support_rounded,
+                    ),
+                    InkWell(
+                      onTap: () =>
+                          AppRouter.routes.goNamed(APP_PAGE.feedback.toName),
+                      child: _buildItem(
+                        context,
+                        label: "Feedback",
+                        icon: Icons.feedback_rounded,
+                      ),
                     ),
                     _buildItem(
                       context,

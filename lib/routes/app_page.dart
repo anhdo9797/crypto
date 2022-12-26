@@ -6,7 +6,8 @@ enum APP_PAGE {
   register,
   forgotPassword,
   home,
-  addWallet
+  addWallet,
+  feedback,
 }
 
 extension AppPageExtension on APP_PAGE {
@@ -28,9 +29,8 @@ extension AppPageExtension on APP_PAGE {
         return "/home";
       case APP_PAGE.addWallet:
         return "add-wallet";
-
-      // case APP_PAGE.coinDetail:
-      //   return "/home/";
+      case APP_PAGE.feedback:
+        return "feedback";
 
       default:
         /** splash */
@@ -52,6 +52,8 @@ extension AppPageExtension on APP_PAGE {
         return "onboard";
       case APP_PAGE.addWallet:
         return "addWallet";
+      case APP_PAGE.feedback:
+        return "feedback";
       default:
         return "splash";
     }
